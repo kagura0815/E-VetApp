@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EVet.Views.PageHome"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    Background="gray"
+    Shell.NavBarIsVisible="True">
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <!--  Other UI elements can go here  -->
+            <!--<VerticalStackLayout>
+                <Frame
+                    BackgroundColor="White"
+                    HeightRequest="60"
+                    WidthRequest="500" />
+
+            </VerticalStackLayout>-->
+
+            <ImageButton
+                Margin="290,-30,0,0"
+                Clicked="ImageButton_Clicked"
+                HeightRequest="30"
+                Source="settings.png"
+                WidthRequest="30" />
+            <VerticalStackLayout>
+
+                <Image
+                    Margin="-120,-60,0,0"
+                    Aspect="AspectFill"
+                    HeightRequest="150"
+                    Source="logo.png"
+                    WidthRequest="150" />
+
+                <Image
+                    Margin="-70,-70.2,10,10"
+                    HeightRequest="300"
+                    Source="doggy.jpg"
+                    WidthRequest="500" />
+
+                <Border
+                    Grid.Column="0"
+                    Margin="30,-200,10,10"
+                    HeightRequest="80"
+                    HorizontalOptions="Center"
+                    StrokeShape="RoundRectangle 50"
+                    VerticalOptions="Center"
+                    WidthRequest="80">
+                    <Image Aspect="Fill" Source="jing.jpg" />
+                </Border>
+                <StackLayout>
+                    <StackLayout.Effects />
+                    <Label
+                        Margin="180,10,0,0"
+                        FontSize="40"
+                        HeightRequest="405"
+                        Text="HELLO JING!"
+                        TextColor="White"
+                        WidthRequest="400" />
+
+                </StackLayout>
+
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Frame
+                    Margin="0,-315,0,0"
+                    BackgroundColor="White"
+                    HeightRequest="160"
+                    WidthRequest="400" />
+
+            </VerticalStackLayout>
+
+            <Button
+                Margin="-140,-210,40,0"
+                BackgroundColor="Transparent"
+                BorderColor="Blue"
+                BorderWidth="2"
+                Clicked="Button_Clicked"
+                CornerRadius="20"
+                FontAttributes="Bold"
+                FontFamily="serif"
+                FontSize="10.5"
+                Text="Request Appointment"
+                TextColor="Blue"
+                WidthRequest="170" />
+            <Image
+                Margin="-290,-140,0,0"
+                HeightRequest="30"
+                Source="appt.png" />
+            <Label
+                Margin="50,-25,0,0"
+                FontSize="15"
+                Text="Appointments"
+                TextColor="Black" />
+            <Button
+                Margin="310,-30,40,0"
+                BackgroundColor="Transparent"
+                BorderColor="Blue"
+                CornerRadius="20"
+                FontSize="10.5"
+                Text="VIEW ALL"
+                TextColor="Black"
+                WidthRequest="170" />
+
+            <Image
+                Margin="190,1,0,0"
+                HeightRequest="120"
+                Source="vet.png" />
+            <Label
+                Margin="20,-115,0,0"
+                FontSize="15"
+                Text="Looks like you don`t have any                          upcoming appointments."
+                TextColor="Black" />
+
+            <VerticalStackLayout>
+                <Frame
+                    Margin="0,85,0,0"
+                    BackgroundColor="White"
+                    HeightRequest="160"
+                    WidthRequest="400" />
+
+            </VerticalStackLayout>
+            <Button
+                Margin="-140,-50,40,0"
+                BackgroundColor="Transparent"
+                BorderColor="Blue"
+                BorderWidth="2"
+                CornerRadius="20"
+                FontAttributes="Bold"
+                FontFamily="serif"
+                FontSize="10.5"
+                Text="Create To Do"
+                TextColor="Blue"
+                WidthRequest="170" />
+            <Image
+                Margin="-290,-140,0,0"
+                HeightRequest="30"
+                Source="appt.png" />
+            <Label
+                Margin="50,-25,0,0"
+                FontSize="15"
+                Text="To Do`s"
+                TextColor="Black" />
+            <Button
+                Margin="310,-30,40,0"
+                BackgroundColor="Transparent"
+                BorderColor="Blue"
+                CornerRadius="20"
+                FontSize="10.5"
+                Text="VIEW ALL"
+                TextColor="Black"
+                WidthRequest="170" />
+
+            <Image
+                Margin="190,1,0,0"
+                HeightRequest="120"
+                Source="vet.png" />
+            <Label
+                Margin="20,-115,0,0"
+                FontSize="15"
+                Text="Looks like you don`t have any                          upcoming appointments."
+                TextColor="Black" />
+            <Grid />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>  

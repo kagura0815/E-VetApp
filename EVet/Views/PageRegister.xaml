@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EVet.Views.PageRegister"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    Title="PageRegister">
+
+    <ScrollView HorizontalOptions="FillAndExpand">
+        <VerticalStackLayout
+            Margin="5"
+            Padding="20"
+            BackgroundColor="Transparent"
+            VerticalOptions="Center">
+
+            <Image
+                Margin="10,-80,10,10"
+                HeightRequest="300"
+                Source="logo.png"
+                WidthRequest="300" />
+
+            <Label
+                Margin="10,-150,10,10"
+                FontAttributes="Bold"
+                FontFamily="serif"
+                FontSize="30"
+                Text="CREATE ACCOUNT"
+                VerticalOptions="Center" />
+            <Label
+                Margin="20,30,0,10"
+                FontAttributes="Bold"
+                FontFamily="serif"
+                FontSize="13"
+                Text="User Information"
+                VerticalOptions="Center" />
+            <ur:TextField
+                x:Name="txtfname"
+                Title="Enter FirstName"
+                Grid.Column="1"
+                Margin="10,0,0,0"
+                AccentColor="#9BEC00"
+                AllowClear="True"
+                TextColor="White" />
+            <ur:TextField
+                x:Name="txtlname"
+                Title="Enter LastName"
+                Grid.Column="1"
+                Margin="10,10,0,0"
+                AccentColor="#9BEC00"
+                AllowClear="True"
+                TextColor="White" />
+            <ur:TextField
+                x:Name="txtuser"
+                Title="Enter UserName"
+                Grid.Column="1"
+                Margin="10,10,0,0"
+                AccentColor="#9BEC00"
+                AllowClear="True"
+                TextColor="White" />
+            <ur:TextField
+                x:Name="txtpword"
+                Title="Enter Password"
+                Grid.Column="1"
+                Margin="10,10,0,0"
+                AccentColor="#9BEC00"
+                AllowClear="True"
+                TextColor="White" />
+            <Label
+                Margin="10,0,0,0"
+                FontSize="10"
+                Text="*The Password must contain atleast 6 letters A-Z,Numbers only."
+                VerticalOptions="Center" />
+
+
+
+
+            <Button
+                x:Name="btnadd"
+                Margin="10"
+                Clicked="btnadd_Clicked"
+                FontAttributes="Bold"
+                FontFamily="serif"
+                FontSize="15"
+                Text="Register">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Offset="0" Color="#9BEC00" />
+                        <GradientStop Offset="1" Color="#059212" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Shadow>
+                    <Shadow
+                        Brush="white"
+                        Opacity="0.3"
+                        Radius="10"
+                        Offset="0,15" />
+                </Button.Shadow>
+            </Button>
+
+
+            <Button
+                Margin="0,0,0,0"
+                BackgroundColor="Transparent"
+                Clicked="Button_Clicked_1"
+                CornerRadius="20"
+                FontAttributes="Bold"
+                FontFamily="serif"
+                FontSize="15"
+                Text="Already Have An Account"
+                TextColor="White"
+                TextTransform="Uppercase" />
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EVet.Views.PetInfo"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    Title="PetInfo">
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <StackLayout
+            Margin="10"
+            Padding="10"
+            Orientation="Vertical">
+
+            <ImageButton
+                Margin="-100,5,0,0"
+                Clicked="ImageButton_Clicked"
+                HeightRequest="40"
+                HorizontalOptions="Start"
+                Source="f_back"
+                WidthRequest="240" />
+            <Label
+                Margin="0,20,0,20"
+                FontAttributes="Bold"
+                FontFamily="serif"
+                FontSize="40"
+                HorizontalOptions="CenterAndExpand"
+                Text="Add Recipe"
+                TextColor="White" />
+            <Frame
+                Margin="0,15,0,15"
+                BackgroundColor="White"
+                CornerRadius="10"
+                HeightRequest="200"
+                WidthRequest="200">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Frame.GestureRecognizers>
+                <Image
+                    x:Name="mainimage"
+                    Aspect="Fill"
+                    Source="f_camera_b" />
+            </Frame>
+
+
+
+
+            <ur:TextField
+                x:Name="txtname"
+                Title="Name"
+                Margin="0,10,0,0"
+                AccentColor="White"
+                BorderColor="White"
+                FontFamily="serif"
+                Icon="f_fname"
+                TextColor="White"
+                TitleColor="White"
+                VerticalOptions="Center" />
+
+            <ur:TextField
+                x:Name="txtbreed"
+                Title="Breed"
+                Margin="0,10,0,0"
+                AccentColor="White"
+                BorderColor="White"
+                FontFamily="serif"
+                Icon="f_cname"
+                TextColor="White"
+                TitleColor="White"
+                VerticalOptions="Center" />
+
+            <ur:PickerField
+                x:Name="txtgender"
+                Title="Gender"
+                Margin="0,10,0,0"
+                AccentColor="White"
+                AllowClear="True"
+                BorderColor="White"
+                FontFamily="serif"
+                Icon="f_cname"
+                ItemsSource="{Binding Gender}"
+                TextColor="White"
+                TitleColor="White"
+                VerticalOptions="Center" />
+
+
+
+            <!--<ur:DatePickerField
+                x:Name="txtbirthday"
+                Title="Enter Cooking Duration"
+                Margin="0,10,0,0"
+                AccentColor="White"
+                BorderColor="White"
+                FontFamily="serif"
+                Icon="f_duration"
+                TextColor="White"
+                TitleColor="White"
+                VerticalOptions="Center" />-->
+
+
+            <ur:PickerField
+                x:Name="txtneutered"
+                Title="Neutered"
+                Margin="0,10,0,10"
+                AccentColor="White"
+                AllowClear="True"
+                BorderColor="White"
+                FontFamily="serif"
+                Icon="f_ingre"
+                ItemsSource="{Binding Neutered}"
+                TextColor="White"
+                TitleColor="White"
+                VerticalOptions="Center" />
+
+            <ur:TextField
+                x:Name="txtallergies"
+                Title="Allergies"
+                Margin="0,10,0,0"
+                AccentColor="White"
+                BorderColor="White"
+                FontFamily="serif"
+                Icon="f_duration"
+                TextColor="White"
+                TitleColor="White"
+                VerticalOptions="Center" />
+            <ur:TextField
+                x:Name="txtweight"
+                Title="Weight"
+                Margin="0,10,0,0"
+                AccentColor="White"
+                BorderColor="White"
+                FontFamily="serif"
+                Icon="f_duration"
+                TextColor="White"
+                TitleColor="White"
+                VerticalOptions="Center" />
+
+
+
+
+            <VerticalStackLayout>
+                <Button
+                    x:Name="btnadd"
+                    Margin="5,10,0,60"
+                    Clicked="btnadd_Clicked"
+                    FontFamily="serif"
+                    Text="Add"
+                    TextColor="{StaticResource White}">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Offset="0" Color="#008DDA" />
+                            <GradientStop Offset="1" Color="#41C9E2" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <Button.Shadow>
+                        <Shadow
+                            Brush="White"
+                            Opacity="0.5"
+                            Radius="10"
+                            Offset="0,15" />
+                    </Button.Shadow>
+                </Button>
+
+            </VerticalStackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
