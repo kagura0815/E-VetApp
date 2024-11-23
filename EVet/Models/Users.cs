@@ -10,20 +10,25 @@ namespace EVet.Models
 {
     class Users
     {
-        public string FirstName { get; set; }
+        public string FirstName { get; set; }   
         public string LastName { get; set; }
+        public string ContactNumber { get; set; }
+        public string Address { get; set; }
+
         public string User { get; set; }
         public string Pass { get; set; }
 
 
         public async Task<bool> _Users(string fname,
-           string lname, string user, string pass)
+           string lname, string cnum, string address, string user, string pass)
         {
             var users = new Users()
             {
 
                 FirstName = fname,
                 LastName = lname,
+                ContactNumber = cnum,
+                Address = address,
                 User = user,
                 Pass = pass,
 

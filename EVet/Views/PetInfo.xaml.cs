@@ -28,14 +28,13 @@ public partial class PetInfo : ContentPage
         Gender.Add("Female");
         txtgender.ItemsSource = Gender;
 
-        Neutered.Add("Yes");
-        Neutered.Add("No");
-        txtneutered.ItemsSource = Neutered;
+     
     }
     private async void btnadd_Clicked(object sender, EventArgs e)
     {
+        var flename = fullNameUser;
         var selectedgen = txtgender.SelectedItem.ToString();
-        var selectedneut = txtneutered.SelectedItem.ToString();
+        //var selectedneut = txtneutered.SelectedItem.ToString();
        
         //var selecteddate = txtbirthday.Date.ToString();
         //var selectedml = txtmeal.SelectedItem.ToString();
@@ -61,24 +60,15 @@ public partial class PetInfo : ContentPage
         //    await DisplayAlert("Data validation", "Please Enter Cooking Duration!", "Got it");
         //    return;
         //}
-        else if (txtneutered.SelectedItem == null)
-        {
-            await DisplayAlert("Data validation", "Please Enter Recipe Insrtructions!", "Got it");
-            return;
-        }
-        else if (string.IsNullOrEmpty(txtallergies.Text))
-        {
-            await DisplayAlert("Data validation", "Please Enter Recipe Insrtructions!", "Got it");
-            return;
-        }
+   
         else if (string.IsNullOrEmpty(txtweight.Text))
         {
-            await DisplayAlert("Data validation", "Please Enter Recipe Insrtructions!", "Got it");
+            await DisplayAlert("Data validation", "Please Enter Weight!", "Got it");
             return;
         }
         else if (_mainimgResult == null)
         {
-            await DisplayAlert("Data validation", "Please Enter Recipe Photo!", "Got it");
+            await DisplayAlert("Data validation", "Please Choose a Photo!", "Got it");
             return;
         }
 
@@ -87,8 +77,8 @@ public partial class PetInfo : ContentPage
             txtname.Text,
             txtbreed.Text,
             selectedgen,
-            selectedneut,
-            txtallergies.Text,
+           
+          
             txtweight.Text,
             _mainimgResult,id
            );
@@ -103,10 +93,10 @@ public partial class PetInfo : ContentPage
             txtname.Text = string.Empty;
             txtbreed.Text = string.Empty;
             txtgender.SelectedItem = null;
-            txtneutered.SelectedItem = null;
-            txtallergies.Text = string.Empty;
             txtweight.Text = string.Empty;
             mainimage.Source = srcs;
+            Application.Current!.MainPage = new AppShell();
+
         }
     }
 

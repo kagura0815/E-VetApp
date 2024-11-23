@@ -14,31 +14,31 @@
             <ImageButton
                 Margin="-100,5,0,0"
                 Clicked="ImageButton_Clicked"
-                HeightRequest="40"
+                HeightRequest="30"
                 HorizontalOptions="Start"
-                Source="f_back"
-                WidthRequest="240" />
+                Source="addphoto.png"
+                WidthRequest="20" />
             <Label
-                Margin="0,20,0,20"
+                Margin="0,-50,0,20"
                 FontAttributes="Bold"
                 FontFamily="serif"
-                FontSize="40"
+                FontSize="20"
                 HorizontalOptions="CenterAndExpand"
-                Text="Add Recipe"
+                Text="Set Up Pet Profile"
                 TextColor="White" />
             <Frame
-                Margin="0,15,0,15"
+                Margin="10,15,0,15"
                 BackgroundColor="White"
                 CornerRadius="10"
-                HeightRequest="200"
-                WidthRequest="200">
+                HeightRequest="100"
+                WidthRequest="100">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                 </Frame.GestureRecognizers>
                 <Image
                     x:Name="mainimage"
                     Aspect="Fill"
-                    Source="f_camera_b" />
+                    Source="addphoto.png" />
             </Frame>
 
 
@@ -97,31 +97,8 @@
                 VerticalOptions="Center" />-->
 
 
-            <ur:PickerField
-                x:Name="txtneutered"
-                Title="Neutered"
-                Margin="0,10,0,10"
-                AccentColor="White"
-                AllowClear="True"
-                BorderColor="White"
-                FontFamily="serif"
-                Icon="f_ingre"
-                ItemsSource="{Binding Neutered}"
-                TextColor="White"
-                TitleColor="White"
-                VerticalOptions="Center" />
 
-            <ur:TextField
-                x:Name="txtallergies"
-                Title="Allergies"
-                Margin="0,10,0,0"
-                AccentColor="White"
-                BorderColor="White"
-                FontFamily="serif"
-                Icon="f_duration"
-                TextColor="White"
-                TitleColor="White"
-                VerticalOptions="Center" />
+
             <ur:TextField
                 x:Name="txtweight"
                 Title="Weight"
@@ -142,13 +119,14 @@
                     x:Name="btnadd"
                     Margin="5,10,0,60"
                     Clicked="btnadd_Clicked"
+                    FontAttributes="Bold"
                     FontFamily="serif"
-                    Text="Add"
+                    Text="SAVE"
                     TextColor="{StaticResource White}">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="1,0">
-                            <GradientStop Offset="0" Color="#008DDA" />
-                            <GradientStop Offset="1" Color="#41C9E2" />
+                            <GradientStop Offset="0" Color="#9BEC00" />
+                            <GradientStop Offset="1" Color="#059212" />
                         </LinearGradientBrush>
                     </Button.Background>
                     <Button.Shadow>

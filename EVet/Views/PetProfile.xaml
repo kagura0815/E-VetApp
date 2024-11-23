@@ -7,19 +7,25 @@
     Title="PetProfile">
     <VerticalStackLayout>
 
-
         <VerticalStackLayout>
+
+
+            <Border
+                Grid.Column="0"
+                Margin="30,20,10,10"
+                HeightRequest="80"
+                HorizontalOptions="Center"
+                StrokeShape="RoundRectangle 50"
+                VerticalOptions="Center"
+                WidthRequest="80">
+                <Image Aspect="Fill" Source="doggy.jpg" />
+            </Border>
             <Label Text="Name:" />
             <Label Margin="60,-19,0,0" Text="Kagura" />
             <Label Text="Weight:" />
             <Label Margin="60,-19,0,0" Text="10kg" />
             <Label Text="Age:" />
             <Label Margin="60,-19,0,0" Text="7" />
-            <Image
-                Margin="-70,10,10,10"
-                HeightRequest="300"
-                Source="doggy.jpg"
-                WidthRequest="550" />
         </VerticalStackLayout>
         <BoxView StyleClass="Divider" />
         <ScrollView>
@@ -27,6 +33,8 @@
                 Margin="0,0,0,0"
                 HeightRequest="200"
                 WidthRequest="370">
+
+                <!--  MEDICAL  -->
 
                 <material:TabItem Title="Medical">
                     <material:TabItem.ContentTemplate>
@@ -144,16 +152,19 @@
                     </material:TabItem.ContentTemplate>
                 </material:TabItem>
 
+                <!--  LAB RESULTS  -->
 
                 <material:TabItem Title="Lab Results">
                     <material:TabItem.ContentTemplate>
                         <DataTemplate>
                             <Frame StyleClass="PrimaryContainer">
-                                <Label Text="Hello, World!" />
+                                <Label Text="LAB RESULTS HERE!" />
                             </Frame>
                         </DataTemplate>
                     </material:TabItem.ContentTemplate>
                 </material:TabItem>
+
+                <!--  PRESCRIPTIONS  -->
 
                 <material:TabItem Title="Prescriptions">
                     <material:TabItem.ContentTemplate>

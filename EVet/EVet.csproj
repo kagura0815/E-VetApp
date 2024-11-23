@@ -57,6 +57,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\addphoto.png" />
 	  <None Remove="Resources\Images\appt.png" />
 	  <None Remove="Resources\Images\bg.jpg" />
 	  <None Remove="Resources\Images\dog.jpg" />
@@ -66,8 +67,9 @@
 	  <None Remove="Resources\Images\logo.png" />
 	  <None Remove="Resources\Images\paw.png" />
 	  <None Remove="Resources\Images\services.png" />
-	  <None Remove="Resources\Images\settings.png" />
+	  <None Remove="Resources\Images\setss.png" />
 	  <None Remove="Resources\Images\vet.png" />
+	  <None Remove="Resources\Images\veterinary.png" />
 	  <None Remove="Resources\Images\welcome.png" />
 	</ItemGroup>
 
@@ -84,10 +86,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="AppShell2.xaml.cs">
+	    <DependentUpon>AppShell2.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="AppShell2.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Appointment.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Dashboard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PageAdmin.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\PageFront.xaml">

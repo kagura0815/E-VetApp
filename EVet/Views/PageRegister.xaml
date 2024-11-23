@@ -50,6 +50,22 @@
                 AllowClear="True"
                 TextColor="White" />
             <ur:TextField
+                x:Name="txtcnum"
+                Title="Enter Contact Number"
+                Grid.Column="1"
+                Margin="10,10,0,0"
+                AccentColor="#9BEC00"
+                AllowClear="True"
+                TextColor="White" />
+            <ur:TextField
+                x:Name="txtaddress"
+                Title="Enter Address"
+                Grid.Column="1"
+                Margin="10,10,0,0"
+                AccentColor="#9BEC00"
+                AllowClear="True"
+                TextColor="White" />
+            <ur:TextField
                 x:Name="txtuser"
                 Title="Enter UserName"
                 Grid.Column="1"

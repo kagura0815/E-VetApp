@@ -25,8 +25,7 @@ namespace EVet.Models
         public string Breed { get; set; }
         //public string Birthday { get; set; }
         public string Gender { get; set; }
-        public string Neutered { get; set; }
-        public string Allergies { get; set; }
+     
         public string Weight { get; set; }
         public async Task<bool> AddPet(
             string id,
@@ -34,31 +33,46 @@ namespace EVet.Models
             string breed,
             //string birthday,
             string gender,
-            string neutered,
-            string allergies,
             string weight,
             FileResult mainimg,
             string flename)
         {
+
             var _mainimg = await UploadImage(await mainimg.OpenReadAsync(), $"{flename}_mainimg.png");
             var pets = new Pets()
             {
-                ID = code,
+                ID = id,
                 Name = name,
                 Breed = breed,
                 //Birthday = birthday,
                 Gender = gender,
-               Neutered = neutered,
-                Allergies = allergies,
+
                 Images = _mainimg
+               
 
             };
 
-            await client.Child("Pets").PostAsync(pets);
+            await client.Child($"Users/{IDD}/Pets").PostAsync(pets);
 
 
             return true;
 
+        }
+
+
+        public async Task<string> UploadImage(Stream img, string filename)
+        {
+            try
+            {
+                var image = await storage
+                    .Child($"Images/PetImage/{filename}")
+                    .PutAsync(img);
+                return image;
+            }
+            catch (Exception ex)
+            {
+                return "false";
+            }
         }
         //public async Task<List<Students>> GetStudents()
         //{
@@ -105,8 +119,7 @@ namespace EVet.Models
                     Breed=item.Object.Breed,
                     //Birthday = item.Object.Birthday,
                     Gender = item.Object.Gender,
-                    Neutered=item.Object.Neutered,
-                    Allergies=item.Object.Allergies,
+                  
                     Weight=item.Object.Weight,
 
                     //Name = item.Object.RecipeName,
@@ -134,8 +147,7 @@ namespace EVet.Models
                 breed = evaluateCode.Object.Breed;
                 //birthday = evaluateCode.Object.Birthday;
                 gender = evaluateCode.Object.Gender;
-                neutered = evaluateCode.Object.Neutered;
-                allergies = evaluateCode.Object.Allergies;
+            
                 weight = evaluateCode.Object.Weight;
                 //recipekey = evaluateCode.Key;
                 //code = evaluateCode.Object.Code;
@@ -194,7 +206,7 @@ namespace EVet.Models
                 Breed = breed,
                 //Birthday = birthday,
                 Gender = gender,
-                Allergies = allergies,
+             
                 Weight = weight,
                 Images = flename
             };
@@ -202,20 +214,7 @@ namespace EVet.Models
             return true;
 
         }
-        public async Task<string> UploadImage(Stream img, string filename)
-        {
-            try
-            {
-                var image = await storage
-                    .Child($"Images/PetImage/{filename}")
-                    .PutAsync(img);
-                return image;
-            }
-            catch (Exception ex)
-            {
-                return "false";
-            }
-        }
+       
         //public async Task<List<Pets>> GetAllRecipe()
 
         //{

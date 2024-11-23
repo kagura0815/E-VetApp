@@ -4,8 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
-    Background="gray"
-    Shell.NavBarIsVisible="True">
+    Shell.NavBarIsVisible="False">
     <ScrollView>
         <VerticalStackLayout>
 
@@ -19,15 +18,15 @@
             </VerticalStackLayout>-->
 
             <ImageButton
-                Margin="290,-30,0,0"
+                Margin="290,10,0,0"
                 Clicked="ImageButton_Clicked"
                 HeightRequest="30"
-                Source="settings.png"
+                Source="setss.png"
                 WidthRequest="30" />
             <VerticalStackLayout>
 
                 <Image
-                    Margin="-120,-60,0,0"
+                    Margin="-170,-70,0,0"
                     Aspect="AspectFill"
                     HeightRequest="150"
                     Source="logo.png"
@@ -39,23 +38,14 @@
                     Source="doggy.jpg"
                     WidthRequest="500" />
 
-                <Border
-                    Grid.Column="0"
-                    Margin="30,-200,10,10"
-                    HeightRequest="80"
-                    HorizontalOptions="Center"
-                    StrokeShape="RoundRectangle 50"
-                    VerticalOptions="Center"
-                    WidthRequest="80">
-                    <Image Aspect="Fill" Source="jing.jpg" />
-                </Border>
+
+
                 <StackLayout>
                     <StackLayout.Effects />
                     <Label
-                        Margin="180,10,0,0"
+                        Margin="180,-100,0,0"
                         FontSize="40"
                         HeightRequest="405"
-                        Text="HELLO JING!"
                         TextColor="White"
                         WidthRequest="400" />
 
@@ -74,7 +64,7 @@
             <Button
                 Margin="-140,-210,40,0"
                 BackgroundColor="Transparent"
-                BorderColor="Blue"
+                BorderColor="#059212"
                 BorderWidth="2"
                 Clicked="Button_Clicked"
                 CornerRadius="20"
@@ -82,7 +72,7 @@
                 FontFamily="serif"
                 FontSize="10.5"
                 Text="Request Appointment"
-                TextColor="Blue"
+                TextColor="#059212"
                 WidthRequest="170" />
             <Image
                 Margin="-290,-140,0,0"
@@ -96,7 +86,7 @@
             <Button
                 Margin="310,-30,40,0"
                 BackgroundColor="Transparent"
-                BorderColor="Blue"
+                BorderColor="#059212"
                 CornerRadius="20"
                 FontSize="10.5"
                 Text="VIEW ALL"
@@ -106,7 +96,7 @@
             <Image
                 Margin="190,1,0,0"
                 HeightRequest="120"
-                Source="vet.png" />
+                Source="veterinary.png" />
             <Label
                 Margin="20,-115,0,0"
                 FontSize="15"
@@ -122,16 +112,17 @@
 
             </VerticalStackLayout>
             <Button
-                Margin="-140,-50,40,0"
+                Margin="-140,-60,40,0"
                 BackgroundColor="Transparent"
-                BorderColor="Blue"
+                BorderColor="#059212"
                 BorderWidth="2"
+                Clicked="Button_Clicked_1"
                 CornerRadius="20"
                 FontAttributes="Bold"
                 FontFamily="serif"
                 FontSize="10.5"
-                Text="Create To Do"
-                TextColor="Blue"
+                Text="Set Up Profile"
+                TextColor="#059212"
                 WidthRequest="170" />
             <Image
                 Margin="-290,-140,0,0"
@@ -140,26 +131,17 @@
             <Label
                 Margin="50,-25,0,0"
                 FontSize="15"
-                Text="To Do`s"
+                Text="Pet Profile"
                 TextColor="Black" />
-            <Button
-                Margin="310,-30,40,0"
-                BackgroundColor="Transparent"
-                BorderColor="Blue"
-                CornerRadius="20"
-                FontSize="10.5"
-                Text="VIEW ALL"
-                TextColor="Black"
-                WidthRequest="170" />
 
             <Image
                 Margin="190,1,0,0"
                 HeightRequest="120"
-                Source="vet.png" />
+                Source="veterinary.png" />
             <Label
-                Margin="20,-115,0,0"
+                Margin="20,-95,0,0"
                 FontSize="15"
-                Text="Looks like you don`t have any                          upcoming appointments."
+                Text="Set Up your Pets Profile."
                 TextColor="Black" />
             <Grid />
 

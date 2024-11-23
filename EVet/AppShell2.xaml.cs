@@ -2,15 +2,15 @@
 
 namespace EVet
 {
-    public partial class AppShell : Shell
+    public partial class AppShell2 : Shell
     {
-        public AppShell()
+        public AppShell2()
         {
             InitializeComponent();
             
         }
 
-        public AppShell(string userkey, string userfullname) : this()
+        public AppShell2(string userkey, string userfullname) : this()
         {
             InitializeComponent();
             App.UserkeyUser = userkey;

@@ -16,6 +16,11 @@ public partial class PageHome : ContentPage
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-        Application.Current!.MainPage = new AppShell();
+        Application.Current!.MainPage = new Appointment();
+    }
+
+    private void Button_Clicked_1(object sender, EventArgs e)
+    {
+        Application.Current!.MainPage = new PetInfo();
     }
 }

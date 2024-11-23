@@ -20,6 +20,16 @@ public partial class PageRegister : ContentPage
             await DisplayAlert("Data validation", "Please Enter Lastname!", "Got it");
             return;
         }
+        else if (string.IsNullOrEmpty(txtcnum.Text))
+        {
+            await DisplayAlert("Data validation", "Please Enter Lastname!", "Got it");
+            return;
+        }
+        else if (string.IsNullOrEmpty(txtaddress.Text))
+        {
+            await DisplayAlert("Data validation", "Please Enter Lastname!", "Got it");
+            return;
+        }
         else if (string.IsNullOrEmpty(txtuser.Text))
         {
             await DisplayAlert("Data validation", "Please Enter  Username!", "Got it");
@@ -39,13 +49,16 @@ public partial class PageRegister : ContentPage
         }
         else
         {
-            await _Users._Users(txtfname.Text, txtlname.Text, txtuser.Text, txtpword.Text);
+            await _Users._Users(txtfname.Text, txtlname.Text, txtcnum.Text, txtaddress.Text, txtuser.Text, txtpword.Text);
 
             txtfname.Text = string.Empty;
             txtlname.Text = string.Empty;
+            txtcnum.Text = string.Empty;
+            txtaddress.Text = string.Empty;
             txtuser.Text = string.Empty;
             txtpword.Text = string.Empty;
             await DisplayAlert("Added Successfully!!!", " ", "OK");
+            Application.Current!.MainPage = new PageLogin();
             return;
         }
 

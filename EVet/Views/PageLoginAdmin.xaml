@@ -22,7 +22,7 @@
 
 
         <ur:TextField
-            x:Name="txtuname"
+            x:Name="txtusname"
             Title="Enter Username"
             Grid.Column="1"
             Margin="20,70,20,0"
@@ -51,6 +51,7 @@
 
         <Button
             Margin="40,50,40,0"
+            Clicked="Button_Clicked_1"
             CornerRadius="20"
             FontAttributes="Bold"
             FontFamily="serif"
