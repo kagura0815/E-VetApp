@@ -1,5 +1,5 @@
 namespace EVet.Views;
-
+    
 public partial class PageHome : ContentPage
 {
 	public PageHome()
@@ -16,7 +16,7 @@ public partial class PageHome : ContentPage
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-        Application.Current!.MainPage = new Appointment();
+        Application.Current!.MainPage = new MainPage();
     }
 
     private void Button_Clicked_1(object sender, EventArgs e)

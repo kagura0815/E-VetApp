@@ -9,7 +9,7 @@ namespace EVet
         {
             InitializeComponent();
 
-            MainPage = new Services();
+            MainPage = new PageFront();
         }
     }
 }

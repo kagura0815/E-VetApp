@@ -47,7 +47,6 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -59,15 +58,21 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\addphoto.png" />
 	  <None Remove="Resources\Images\appt.png" />
+	  <None Remove="Resources\Images\back.png" />
 	  <None Remove="Resources\Images\bg.jpg" />
+	  <None Remove="Resources\Images\breed.png" />
+	  <None Remove="Resources\Images\date.png" />
 	  <None Remove="Resources\Images\dog.jpg" />
 	  <None Remove="Resources\Images\doggy.jpg" />
+	  <None Remove="Resources\Images\gender.png" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\jing.jpg" />
 	  <None Remove="Resources\Images\logo.png" />
+	  <None Remove="Resources\Images\password.png" />
 	  <None Remove="Resources\Images\paw.png" />
 	  <None Remove="Resources\Images\services.png" />
 	  <None Remove="Resources\Images\setss.png" />
+	  <None Remove="Resources\Images\user.png" />
 	  <None Remove="Resources\Images\vet.png" />
 	  <None Remove="Resources\Images\veterinary.png" />
 	  <None Remove="Resources\Images\welcome.png" />
@@ -95,7 +100,16 @@
 	  <MauiXaml Update="AppShell2.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Appointment.xaml">
+	  <MauiXaml Update="Pages\AppointmentTime.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Confirmation.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\PetDetails.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SelectService.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Dashboard.xaml">
@@ -128,7 +142,7 @@
 	  <MauiXaml Update="Views\PetProfile.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Services.xaml">
+	  <MauiXaml Update="Views\Sample.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

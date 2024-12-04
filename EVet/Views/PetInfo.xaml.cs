@@ -32,6 +32,7 @@ public partial class PetInfo : ContentPage
     }
     private async void btnadd_Clicked(object sender, EventArgs e)
     {
+        var selectedBreed = (string)breed.SelectedItem; // Convert selected item to string
         var flename = fullNameUser;
         var selectedgen = txtgender.SelectedItem.ToString();
         //var selectedneut = txtneutered.SelectedItem.ToString();
@@ -45,11 +46,7 @@ public partial class PetInfo : ContentPage
             return;
         }
       
-        else if (string.IsNullOrEmpty(txtbreed.Text))
-        {
-            await DisplayAlert("Data validation", "Please Fill up Gender!", "Got it");
-            return;
-        }
+       
         else if (txtgender.SelectedItem == null)
         {
             await DisplayAlert("Data validation", "Please Enter Category Type!", "Got it");
@@ -75,7 +72,7 @@ public partial class PetInfo : ContentPage
 
         var adss = await _pets.AddPet(id,
             txtname.Text,
-            txtbreed.Text,
+           selectedBreed,
             selectedgen,
            
           
@@ -91,7 +88,7 @@ public partial class PetInfo : ContentPage
         {
             await DisplayAlert("Got it!", "Data has been successfully added.", "Okay");
             txtname.Text = string.Empty;
-            txtbreed.Text = string.Empty;
+            breed.SelectedItem = null;
             txtgender.SelectedItem = null;
             txtweight.Text = string.Empty;
             mainimage.Source = srcs;
