@@ -6,7 +6,7 @@
     <VerticalStackLayout Padding="20" VerticalOptions="Center">
         <Label FontSize="20" Text="Enter Your Pet's Details" />
         <Entry x:Name="PetNameEntry" Placeholder="Pet's Name" />
-        <Picker Title="Pet Type">
+        <Picker x:Name="ptype" Title="Pet Type">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Dog</x:String>
@@ -16,8 +16,8 @@
             </Picker.ItemsSource>
         </Picker>
         <StackLayout>
-            <Label Text="Select a Breed:" />
-            <Picker x:Name="roomPicker">
+
+            <Picker x:Name="pbreed" Title="Pet`s Breed">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Akita</x:String>
@@ -53,6 +53,9 @@
             </Picker>
 
         </StackLayout>
-        <Entry Keyboard="Numeric" Placeholder="Pet's Age" />
+        <Entry
+            x:Name="age"
+            Keyboard="Numeric"
+            Placeholder="Pet's Age" />
     </VerticalStackLayout>
 </ContentView>

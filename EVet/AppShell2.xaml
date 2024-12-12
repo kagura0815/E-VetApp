@@ -20,10 +20,10 @@
             ContentTemplate="{DataTemplate pages:PetProfile}"
             Icon="paw.png" />
 
-        <ShellContent
+        <!--<ShellContent
             Title="Services"
             ContentTemplate="{DataTemplate pages:Services}"
-            Icon="services.png" />
+            Icon="services.png" />-->
 
 
     </TabBar>

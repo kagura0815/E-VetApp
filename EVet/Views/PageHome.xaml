@@ -86,7 +86,6 @@
             <Button
                 Margin="310,-30,40,0"
                 BackgroundColor="Transparent"
-                BorderColor="#059212"
                 CornerRadius="20"
                 FontSize="10.5"
                 Text="VIEW ALL"
@@ -98,9 +97,9 @@
                 HeightRequest="120"
                 Source="veterinary.png" />
             <Label
-                Margin="20,-115,0,0"
+                Margin="20,-100,0,0"
                 FontSize="15"
-                Text="Looks like you don`t have any                          upcoming appointments."
+                Text="Book an appointment now!"
                 TextColor="Black" />
 
             <VerticalStackLayout>
@@ -141,7 +140,7 @@
             <Label
                 Margin="20,-95,0,0"
                 FontSize="15"
-                Text="Set Up your Pets Profile."
+                Text="Set Up your Pet`s Profile."
                 TextColor="Black" />
             <Grid />
 

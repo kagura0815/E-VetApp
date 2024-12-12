@@ -6,27 +6,36 @@
     xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
     Title="PetProfile">
     <VerticalStackLayout>
+        <Frame
+            Margin="10,15,0,15"
+            BackgroundColor="White"
+            CornerRadius="10"
+            HeightRequest="100"
+            WidthRequest="100">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+            </Frame.GestureRecognizers>
+            <Image
+                x:Name="mainimage"
+                Aspect="Fill"
+                Source="addphoto.png" />
+        </Frame>
 
-        <VerticalStackLayout>
+        <Label FontSize="18" Text="Select a Pet" />
 
+        <StackLayout Padding="20">
+            <Image x:Name="petImage" HeightRequest="200" />
+            <Label
+                x:Name="petName"
+                FontAttributes="Bold"
+                FontSize="24" />
+            <Label x:Name="petBreed" FontSize="18" />
+            <Label x:Name="petGender" FontSize="18" />
+            <Label x:Name="petWeight" FontSize="18" />
 
-            <Border
-                Grid.Column="0"
-                Margin="30,20,10,10"
-                HeightRequest="80"
-                HorizontalOptions="Center"
-                StrokeShape="RoundRectangle 50"
-                VerticalOptions="Center"
-                WidthRequest="80">
-                <Image Aspect="Fill" Source="doggy.jpg" />
-            </Border>
-            <Label Text="Name:" />
-            <Label Margin="60,-19,0,0" Text="Kagura" />
-            <Label Text="Weight:" />
-            <Label Margin="60,-19,0,0" Text="10kg" />
-            <Label Text="Age:" />
-            <Label Margin="60,-19,0,0" Text="7" />
-        </VerticalStackLayout>
+        </StackLayout>
+
+        <!--</VerticalStackLayout>
         <BoxView StyleClass="Divider" />
         <ScrollView>
             <material:TabView
@@ -34,137 +43,31 @@
                 HeightRequest="200"
                 WidthRequest="370">
 
-                <!--  MEDICAL  -->
+        -->
+        <!--  MEDICAL  -->
+        <!--
 
                 <material:TabItem Title="Medical">
-                    <material:TabItem.ContentTemplate>
-                        <DataTemplate>
-                            <CollectionView
-                                x:Name="ListStudents"
-                                Grid.Row="3"
-                                Margin="20"
-                                HeightRequest="580">
-                                <CollectionView.ItemsLayout>
-                                    <GridItemsLayout Orientation="Vertical" Span="1" />
-                                </CollectionView.ItemsLayout>
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ContentView Padding="2">
-
-
-                                            <SwipeView>
-
-                                                <SwipeView.RightItems>
-
-                                                    <SwipeItems Mode="Reveal">
-                                                        <SwipeItemView x:Name="itemeditstudent" Margin="5">
-                                                            <StackLayout Margin="5">
-                                                                <StackLayout
-                                                                    HorizontalOptions="CenterAndExpand"
-                                                                    Orientation="Vertical"
-                                                                    VerticalOptions="CenterAndExpand">
-                                                                    <Image
-                                                                        Aspect="AspectFit"
-                                                                        HeightRequest="20"
-                                                                        Source="edit.png"
-                                                                        WidthRequest="20" />
-                                                                    <Label
-                                                                        FontSize="Micro"
-                                                                        HorizontalOptions="CenterAndExpand"
-                                                                        Text="Edit"
-                                                                        VerticalOptions="CenterAndExpand" />
-                                                                </StackLayout>
-                                                            </StackLayout>
-                                                        </SwipeItemView>
-                                                        <SwipeItemView x:Name="itemdeletestudent" Margin="5">
-                                                            <StackLayout Margin="5">
-                                                                <StackLayout
-                                                                    HorizontalOptions="CenterAndExpand"
-                                                                    Orientation="Vertical"
-                                                                    VerticalOptions="CenterAndExpand">
-                                                                    <Image
-                                                                        Aspect="AspectFit"
-                                                                        HeightRequest="20"
-                                                                        Source="delete.png"
-                                                                        WidthRequest="20" />
-                                                                    <Label
-                                                                        FontSize="Micro"
-                                                                        HorizontalOptions="CenterAndExpand"
-                                                                        Text="Delete"
-                                                                        VerticalOptions="CenterAndExpand" />
-                                                                </StackLayout>
-                                                            </StackLayout>
-                                                        </SwipeItemView>
-                                                    </SwipeItems>
-                                                </SwipeView.RightItems>
-
-
-
-                                                <Border
-                                                    Margin="0"
-                                                    Padding="0"
-                                                    BackgroundColor="White"
-                                                    HeightRequest="160"
-                                                    Opacity="0.8"
-                                                    StrokeShape="RoundRectangle 20"
-                                                    StrokeThickness="0">
-                                                    <Grid ColumnDefinitions="Auto, *">
-                                                        <Line Grid.Column="0" WidthRequest="5" />
-                                                        <StackLayout
-                                                            Grid.Column="1"
-                                                            Margin="15"
-                                                            BackgroundColor="Transparent"
-                                                            HorizontalOptions="Fill"
-                                                            Orientation="Horizontal">
-                                                            <Grid ColumnDefinitions="auto,auto">
-                                                                <Border
-                                                                    Grid.Column="0"
-                                                                    Margin="-10,0,10,10"
-                                                                    HeightRequest="80"
-                                                                    StrokeShape="RoundRectangle 50"
-                                                                    VerticalOptions="Center"
-                                                                    WidthRequest="80">
-
-                                                                    <Image Aspect="Fill" Source="{Binding Images}" />
-                                                                </Border>
-                                                                <Grid
-                                                                    Grid.Column="1"
-                                                                    ColumnDefinitions="Auto, *"
-                                                                    RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
-                                                                    RowSpacing="1" />
-                                                            </Grid>
-                                                        </StackLayout>
-                                                    </Grid>
-                                                </Border>
-
-
-
-                                            </SwipeView>
-
-
-
-
-                                        </ContentView>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-                        </DataTemplate>
-                    </material:TabItem.ContentTemplate>
+                    <material:TabItem.ContentTemplate />
                 </material:TabItem>
 
-                <!--  LAB RESULTS  -->
+        -->
+        <!--  LAB RESULTS  -->
+        <!--
 
                 <material:TabItem Title="Lab Results">
                     <material:TabItem.ContentTemplate>
                         <DataTemplate>
-                            <Frame StyleClass="PrimaryContainer">
+                            <Frame HorizontalOptions="Center" StyleClass="PrimaryContainer">
                                 <Label Text="LAB RESULTS HERE!" />
                             </Frame>
                         </DataTemplate>
                     </material:TabItem.ContentTemplate>
                 </material:TabItem>
 
-                <!--  PRESCRIPTIONS  -->
+        -->
+        <!--  PRESCRIPTIONS  -->
+        <!--
 
                 <material:TabItem Title="Prescriptions">
                     <material:TabItem.ContentTemplate>
@@ -173,8 +76,9 @@
                         </DataTemplate>
                     </material:TabItem.ContentTemplate>
                 </material:TabItem>
-            </material:TabView>
+            </material:TabView>-->
 
-        </ScrollView>
+        <!--</ScrollView>-->
+
     </VerticalStackLayout>
 </ContentPage>

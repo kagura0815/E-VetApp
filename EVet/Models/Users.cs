@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using EVet.Includes;
 using Firebase.Database.Query;
 using static EVet.Includes.GlobalVariables;
 namespace EVet.Models
@@ -14,17 +14,19 @@ namespace EVet.Models
         public string LastName { get; set; }
         public string ContactNumber { get; set; }
         public string Address { get; set; }
-
+        public string UID {  get; set; }
         public string User { get; set; }
         public string Pass { get; set; }
 
 
-        public async Task<bool> _Users(string fname,
+        public async Task<bool> _AddUser(string idd, string fname,
            string lname, string cnum, string address, string user, string pass)
         {
+            var uidd = GlobalVariables.uid; // Assuming IDD is a global variable for user ID
             var users = new Users()
             {
 
+                 UID = idd,
                 FirstName = fname,
                 LastName = lname,
                 ContactNumber = cnum,

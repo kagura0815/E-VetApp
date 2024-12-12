@@ -15,6 +15,8 @@ using Microsoft.Maui.Storage;
 using Firebase.Storage;
 using System.Reflection.Emit;
 using System.Threading.Tasks;
+using EVet.Includes;
+using Firebase.Database;
 namespace EVet.Models
 {
    public class Pets
@@ -38,39 +40,82 @@ namespace EVet.Models
             string flename)
         {
 
-            var _mainimg = await UploadImage(await mainimg.OpenReadAsync(), $"{flename}_mainimg.png");
-            var pets = new Pets()
+            try
             {
-                ID = id,
-                Name = name,
-                Breed = breed,
-                //Birthday = birthday,
-                Gender = gender,
+                // Attempt to upload the image
+                var _mainimg = await UploadImage(await mainimg.OpenReadAsync(), $"{flename}_mainimg.png");
 
-                Images = _mainimg
-               
+                var idd = GlobalVariables.IDD; // Assuming IDD is a global variable for user ID
+                var pets = new Pets()
+                {
+                    ID = idd,
+                    Name = name,
+                    Breed = breed,
+                    //Birthday = birthday,
+                    Gender = gender,
+                    Weight = weight,
+                    Images = _mainimg
+                };
 
-            };
+                // Attempt to post the pet data to the database
+                await client.Child($"Users/{IDD}/Pets").PostAsync(pets);
 
-            await client.Child($"Users/{IDD}/Pets").PostAsync(pets);
+                return true; // Return true if everything is successful
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (optional)
+                Console.WriteLine($"An error occurred while adding pet: {ex.Message}");
 
+                // You can also log the stack trace if needed
+                // Console.WriteLine(ex.StackTrace);
 
-            return true;
-
+                return false; // Return false to indicate failure
+            }
         }
 
 
-        public async Task<string> UploadImage(Stream img, string filename)
+        public class pets
+        {
+            public string ID { get; set; }
+            public string Name { get; set; }
+                public string Breed { get; set; }
+
+            public string Weight { get; set; }
+            public string Gender { get; set; }
+        }
+
+
+        public async Task<bool> Addimage(FileResult mainimg, string flename)
+        {
+            try
+            {
+
+                var _mainimg = await UploadImage(await mainimg.OpenReadAsync(), $"{flename}_mainimg.png");
+
+                client.Dispose();
+                return false;
+            }
+            catch
+            {
+                client.Dispose();
+                return false;
+            }
+        }
+ 
+        public async Task<string> UploadImage(Stream img, string flename)
         {
             try
             {
                 var image = await storage
-                    .Child($"Images/PetImage/{filename}")
+                    .Child($"Images/PetImage/{flename}")
                     .PutAsync(img);
                 return image;
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
+                Console.WriteLine($"Error Uploading image {e.Message}");
+
                 return "false";
             }
         }
@@ -109,27 +154,20 @@ namespace EVet.Models
                 return false;
             }
         }
-        public async Task<List<Pets>> GetRecipe()
+        public async Task<List<Pets>> GetPet()
         {
             return (await client
-                .Child("Pets")
+                .Child($"Users/{IDD}/Pets")
                 .OnceAsync<Pets>()).Select(item => new Pets
                 {
                     Name = item.Object.Name,
                     Breed=item.Object.Breed,
                     //Birthday = item.Object.Birthday,
                     Gender = item.Object.Gender,
-                  
+                  Images = item.Object.Images,
                     Weight=item.Object.Weight,
 
-                    //Name = item.Object.RecipeName,
-                    //Category = item.Object.Category,
-                    //Meal = item.Object.Meal,
-                    //Duration = item.Object.Duration,
-                    //Code = item.Object.Code,
-                    //Ingredient = item.Object.Ingredient,
-                    //Instruction = item.Object.Instruction,
-                    //Images = item.Object.Images
+                   
 
                 }).ToList();
         }
@@ -214,7 +252,7 @@ namespace EVet.Models
             return true;
 
         }
-       
+
         //public async Task<List<Pets>> GetAllRecipe()
 
         //{
@@ -244,6 +282,21 @@ namespace EVet.Models
 
         //    )).ToList();
         //}
+        public async Task<List<Pets>> GetPetsAsync(string userId)
+        {
+            return (await client
+                .Child($"Users/{userId}/Pets")
+                .OnceAsync<Pets>())
+                .Select(item => new Pets
+                {
+                    ID = item.Object.ID,
+                    Name = item.Object.Name,
+                    Breed = item.Object.Breed,
+                    Gender = item.Object.Gender,
+                    Weight = item.Object.Weight,
+                    Images = item.Object.Images
+                }).ToList();
+        }
     }
 }
 

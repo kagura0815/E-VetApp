@@ -36,7 +36,7 @@ public partial class PageLogin : ContentPage
           
             if (!a)
             {
-                await DisplayAlert("Access Denied", "Please try again!", "Okay");
+                await DisplayAlert("You Have Entered a Wrong Password", "", "Okay");
                 return;
 
             }
@@ -60,7 +60,7 @@ public partial class PageLogin : ContentPage
                 GlobalVariables.IDD = iD;
                 GlobalVariables.Fullname = userFullName;
                     await DisplayAlert("Access Granted", userFullName , "Okay");
-                    await DisplayAlert("Access Granted", iD, "Okay");
+                  
                     Application.Current.MainPage = new AppShell(iD, userFullName);
                 
             

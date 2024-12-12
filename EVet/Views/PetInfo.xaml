@@ -11,15 +11,9 @@
             Padding="10"
             Orientation="Vertical">
 
-            <ImageButton
-                Margin="-100,5,0,0"
-                Clicked="ImageButton_Clicked"
-                HeightRequest="30"
-                HorizontalOptions="Start"
-                Source="addphoto.png"
-                WidthRequest="20" />
+
             <Label
-                Margin="0,-50,0,20"
+                Margin="0,-10,0,20"
                 FontAttributes="Bold"
                 FontFamily="serif"
                 FontSize="20"
@@ -65,7 +59,7 @@
                 AllowClear="True"
                 BorderColor="White"
                 FontFamily="serif"
-                Icon="f_cname"
+                Icon="gender.png"
                 ItemsSource="{Binding Gender}"
                 TextColor="White"
                 TitleColor="White"
@@ -87,25 +81,20 @@
 
 
 
-
-            <ur:TextField
-                x:Name="txtweight"
-                Title="Weight(KG)"
-                Margin="0,10,0,0"
-                AccentColor="White"
-                BorderColor="White"
-                FontFamily="serif"
-                Icon="f_duration"
-                TextColor="White"
-                TitleColor="White"
-                VerticalOptions="Center" />
-
+            <Label
+                Margin="10,20,0,0"
+                Text="Weight:"
+                TextColor="White" />
+            <Entry
+                x:Name="weight"
+                Keyboard="Numeric"
+                Placeholder="Weight(KG)" />
 
             <StackLayout>
                 <Label
-        Margin="10,20,0,0"  
-        Text="Select a Breed:"
-        TextColor="White" />
+                    Margin="10,20,0,0"
+                    Text="Select a Breed:"
+                    TextColor="White" />
                 <Picker x:Name="breed">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">

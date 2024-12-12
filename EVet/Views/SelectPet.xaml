@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EVet.Views.SelectPet"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="SelectPet">
+    <VerticalStackLayout>
+        <Button Clicked="OnBackButtonClicked" Text="Back" />
+        <CollectionView
+            x:Name="ListPets"
+            Grid.Row="3"
+            Margin="20"
+            HeightRequest="580"
+            SelectionChanged="ListPets_SelectionChanged"
+            SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="1" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView Padding="2">
+
+
+                        <SwipeView>
+
+                            <SwipeView.RightItems>
+
+                                <SwipeItems Mode="Reveal">
+                                    <SwipeItemView x:Name="itemeditstudent" Margin="5">
+                                        <StackLayout Margin="5">
+                                            <StackLayout
+                                                HorizontalOptions="CenterAndExpand"
+                                                Orientation="Vertical"
+                                                VerticalOptions="CenterAndExpand">
+                                                <Image
+                                                    Aspect="AspectFit"
+                                                    HeightRequest="20"
+                                                    Source="edit.png"
+                                                    WidthRequest="20" />
+                                                <Label
+                                                    FontSize="Micro"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    Text="Edit"
+                                                    VerticalOptions="CenterAndExpand" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </SwipeItemView>
+                                    <SwipeItemView x:Name="itemdeletestudent" Margin="5">
+                                        <StackLayout Margin="5">
+                                            <StackLayout
+                                                HorizontalOptions="CenterAndExpand"
+                                                Orientation="Vertical"
+                                                VerticalOptions="CenterAndExpand">
+                                                <Image
+                                                    Aspect="AspectFit"
+                                                    HeightRequest="20"
+                                                    Source="delete.png"
+                                                    WidthRequest="20" />
+                                                <Label
+                                                    FontSize="Micro"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    Text="Delete"
+                                                    VerticalOptions="CenterAndExpand" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </SwipeItemView>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+
+
+                            <Border
+                                Margin="0"
+                                Padding="0"
+                                BackgroundColor="White"
+                                HeightRequest="160"
+                                Opacity="0.8"
+                                StrokeShape="RoundRectangle 20"
+                                StrokeThickness="0">
+                                <Grid ColumnDefinitions="Auto, *">
+                                    <Line Grid.Column="0" WidthRequest="5" />
+                                    <StackLayout
+                                        Grid.Column="1"
+                                        Margin="15"
+                                        BackgroundColor="Transparent"
+                                        HorizontalOptions="Fill"
+                                        Orientation="Horizontal">
+                                        <Grid ColumnDefinitions="auto,auto">
+                                            <Border
+                                                Grid.Column="0"
+                                                Margin="-10,0,10,10"
+                                                HeightRequest="80"
+                                                StrokeShape="RoundRectangle 50"
+                                                VerticalOptions="Center"
+                                                WidthRequest="80">
+
+                                                <Image Aspect="Fill" Source="{Binding Images}" />
+                                            </Border>
+
+
+                                        </Grid>
+
+                                    </StackLayout>
+                                </Grid>
+                            </Border>
+
+
+
+                        </SwipeView>
+
+
+
+
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,4 +1,5 @@
 using EVet.Models;
+using System.Text.RegularExpressions;
 namespace EVet.Views;
 
 public partial class PageRegister : ContentPage
@@ -8,8 +9,10 @@ public partial class PageRegister : ContentPage
 	{
 		InitializeComponent();
 	}
+
     private async void btnadd_Clicked(object sender, EventArgs e)
     {
+        var idd = Guid.NewGuid().ToString();
         if (string.IsNullOrEmpty(txtfname.Text))
         {
             await DisplayAlert("Data validation", "Please Enter  Firstname!", "Got it");
@@ -20,9 +23,9 @@ public partial class PageRegister : ContentPage
             await DisplayAlert("Data validation", "Please Enter Lastname!", "Got it");
             return;
         }
-        else if (string.IsNullOrEmpty(txtcnum.Text))
+        else if (string.IsNullOrEmpty(txtcnum.Text) || txtcnum.Text.Length != 11 || !Regex.IsMatch(txtcnum.Text, @"^\d{11}$"))
         {
-            await DisplayAlert("Data validation", "Please Enter Lastname!", "Got it");
+            await DisplayAlert("Data validation", "The number must contain exactly 11 digits.", "Got it");
             return;
         }
         else if (string.IsNullOrEmpty(txtaddress.Text))
@@ -35,9 +38,10 @@ public partial class PageRegister : ContentPage
             await DisplayAlert("Data validation", "Please Enter  Username!", "Got it");
             return;
         }
-        else if (string.IsNullOrEmpty(txtpword.Text))
+       
+        else if (string.IsNullOrEmpty(txtpword.Text) || txtpword.Text.Length < 6 || !Regex.IsMatch(txtpword.Text, @"^[a-zA-Z0-9]+$"))
         {
-            await DisplayAlert("Data validation", "Please Enter  Password!", "Got it");
+            await DisplayAlert("Data validation", "Please Enter a Password that is at least 8 characters long and contains both letters and numbers!", "Got it");
             return;
         }
 
@@ -49,7 +53,7 @@ public partial class PageRegister : ContentPage
         }
         else
         {
-            await _Users._Users(txtfname.Text, txtlname.Text, txtcnum.Text, txtaddress.Text, txtuser.Text, txtpword.Text);
+            await _Users._AddUser(idd,txtfname.Text, txtlname.Text, txtcnum.Text, txtaddress.Text, txtuser.Text, txtpword.Text);
 
             txtfname.Text = string.Empty;
             txtlname.Text = string.Empty;
