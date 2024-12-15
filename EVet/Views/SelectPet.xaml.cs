@@ -29,12 +29,12 @@ public partial class SelectPet : ContentPage
         if (e.CurrentSelection.FirstOrDefault() is Pets.pets selectedPets)
         {
             // Create a new instance of the detail page
-            var detailPage = new PetProfile();
+            var detailPage = new AppShell();
 
             // Set the BindingContext to the selected post
             detailPage.BindingContext = new Pets()
             {
-                                ID = selectedPets.ID,
+                ID = selectedPets.ID,
                 Name = selectedPets.Name,
                 Breed = selectedPets.Breed,
                 Gender = selectedPets.Gender,

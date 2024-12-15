@@ -14,6 +14,7 @@ public partial class PageLogin : ContentPage
 		InitializeComponent();
 	}
 
+   
     private async void btnadd_Clicked(object sender, EventArgs e)
     {
         Console.WriteLine($"Username: {txtuname.Text}, Password: {txtpword.Text}");
@@ -28,6 +29,12 @@ public partial class PageLogin : ContentPage
             await DisplayAlert("Data Validation", "Please enter the Password", "Got It");
             return;
         }
+        var current = Connectivity.Current;
+        if (current.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Connection Error", "No internet connection. Please check your network settings.", "Okay");
+            return;
+        }
         try
         {
 
@@ -36,7 +43,7 @@ public partial class PageLogin : ContentPage
           
             if (!a)
             {
-                await DisplayAlert("You Have Entered a Wrong Password", "", "Okay");
+                await DisplayAlert("", "You Have Entered a Wrong Password", "Okay");
                 return;
 
             }

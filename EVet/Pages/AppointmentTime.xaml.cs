@@ -26,6 +26,13 @@ public partial class AppointmentTime : ContentView
     }
     private void UpdateAvailableTimes(DateTime selectedDate)
     {
+        var unavailableTimes = bookedAppointments
+               .Where(appointment => appointment.Date == selectedDate.Date)
+               .Select(appointment => appointment.TimeOfDay)
+               .ToList();
+        string unavailableMessage = "Unavailable times: " + string.Join(", ", unavailableTimes);
+        // You can use a Label to show this message in your UI
+        UnavailableTimesLabel.Text = unavailableMessage; // Assuming you have a Label named UnavailableTimesLabel
         // Clear the TimePicker's selected time if it's already booked
         for (int hour = 0; hour < 24; hour++)
         {
@@ -39,4 +46,5 @@ public partial class AppointmentTime : ContentView
             }
         }
     }
+
 }

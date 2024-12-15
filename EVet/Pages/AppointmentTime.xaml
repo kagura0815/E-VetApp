@@ -7,5 +7,12 @@
         <Label FontSize="20" Text="Choose Appointment Time" />
         <DatePicker x:Name="AppointmentDatePicker" DateSelected="OnDateSelected" />
         <TimePicker x:Name="AppointmentTimePicker" />
+
+        <Label
+            x:Name="UnavailableTimesLabel"
+            FontSize="16"
+            Text=""
+            TextColor="Red" />
+
     </VerticalStackLayout>
 </ContentView>
