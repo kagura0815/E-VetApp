@@ -4,12 +4,25 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
-    <ScrollView>
-        <VerticalStackLayout>
+    <Grid Background="Transparent" BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
 
-            <!--  Other UI elements can go here  -->
-            <!--<VerticalStackLayout>
+        </Grid.RowDefinitions>
+
+        <ScrollView
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="0,0,0,10"
+            HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout>
+
+                <!--  Other UI elements can go here  -->
+                <!--<VerticalStackLayout>
                 <Frame
                     BackgroundColor="White"
                     HeightRequest="60"
@@ -17,133 +30,157 @@
 
             </VerticalStackLayout>-->
 
-            <ImageButton
-                Margin="290,10,0,0"
-                Clicked="ImageButton_Clicked"
-                HeightRequest="30"
-                Source="setss.png"
-                WidthRequest="30" />
-            <VerticalStackLayout>
+                <ImageButton
+                    Margin="290,10,0,0"
+                    Clicked="ImageButton_Clicked"
+                    HeightRequest="30"
+                    Source="setss.png"
+                    WidthRequest="30" />
+                <VerticalStackLayout>
 
-                <Image
-                    Margin="-170,-70,0,0"
-                    Aspect="AspectFill"
-                    HeightRequest="150"
-                    Source="logo.png"
-                    WidthRequest="150" />
+                    <Image
+                        Margin="-170,-70,0,0"
+                        Aspect="AspectFill"
+                        HeightRequest="150"
+                        Source="logo.png"
+                        WidthRequest="150" />
 
-                <Image
-                    Margin="-70,-70.2,10,10"
-                    HeightRequest="300"
-                    Source="doggy.jpg"
-                    WidthRequest="500" />
+                    <Image
+                        Margin="-70,-70.2,10,10"
+                        HeightRequest="300"
+                        Source="doggy.jpg"
+                        WidthRequest="500" />
 
 
 
-                <StackLayout>
-                    <StackLayout.Effects />
-                    <Label
-                        Margin="180,-100,0,0"
-                        FontSize="40"
-                        HeightRequest="405"
-                        TextColor="White"
+                    <StackLayout>
+                        <StackLayout.Effects />
+                        <Label
+                            Margin="180,-100,0,0"
+                            FontSize="40"
+                            HeightRequest="405"
+                            TextColor="White"
+                            WidthRequest="400" />
+
+                    </StackLayout>
+
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Frame
+                        Margin="0,-315,0,0"
+                        BackgroundColor="White"
+                        HeightRequest="160"
                         WidthRequest="400" />
 
-                </StackLayout>
+                </VerticalStackLayout>
+
+                <Button
+                    Margin="-140,-210,40,0"
+                    BackgroundColor="Transparent"
+                    BorderColor="#059212"
+                    BorderWidth="2"
+                    Clicked="Button_Clicked"
+                    CornerRadius="20"
+                    FontAttributes="Bold"
+                    FontFamily="serif"
+                    FontSize="10.5"
+                    Text="Request Appointment"
+                    TextColor="#059212"
+                    WidthRequest="170" />
+                <Image
+                    Margin="-290,-140,0,0"
+                    HeightRequest="30"
+                    Source="appt.png" />
+                <Label
+                    Margin="50,-25,0,0"
+                    FontSize="15"
+                    Text="Appointments"
+                    TextColor="Black" />
+                <Button
+                    Margin="310,-30,40,0"
+                    BackgroundColor="Transparent"
+                    CornerRadius="20"
+                    FontSize="10.5"
+                    Text="VIEW ALL"
+                    TextColor="Black"
+                    WidthRequest="170" />
+
+                <Image
+                    Margin="190,1,0,0"
+                    HeightRequest="120"
+                    Source="veterinary.png" />
+                <Label
+                    Margin="20,-100,0,0"
+                    FontSize="15"
+                    Text="Book an appointment now!"
+                    TextColor="Black" />
+
+                <VerticalStackLayout>
+                    <Frame
+                        Margin="0,85,0,0"
+                        BackgroundColor="White"
+                        HeightRequest="160"
+                        WidthRequest="400" />
+
+                </VerticalStackLayout>
+                <Button
+                    Margin="-140,-60,40,0"
+                    BackgroundColor="Transparent"
+                    BorderColor="#059212"
+                    BorderWidth="2"
+                    Clicked="Button_Clicked_1"
+                    CornerRadius="20"
+                    FontAttributes="Bold"
+                    FontFamily="serif"
+                    FontSize="10.5"
+                    Text="Set Up Profile"
+                    TextColor="#059212"
+                    WidthRequest="170" />
+                <Image
+                    Margin="-290,-140,0,0"
+                    HeightRequest="30"
+                    Source="appt.png" />
+                <Label
+                    Margin="50,-25,0,0"
+                    FontSize="15"
+                    Text="Pet Profile"
+                    TextColor="Black" />
+
+                <Image
+                    Margin="190,1,0,0"
+                    HeightRequest="120"
+                    Source="veterinary.png" />
+                <Label
+                    Margin="20,-95,0,0"
+                    FontSize="15"
+                    Text="Set Up your Pet`s Profile."
+                    TextColor="Black" />
+                <Grid />
 
             </VerticalStackLayout>
-            <VerticalStackLayout>
-                <Frame
-                    Margin="0,-315,0,0"
-                    BackgroundColor="White"
-                    HeightRequest="160"
-                    WidthRequest="400" />
+        </ScrollView>
+        <StackLayout Grid.Row="2" BackgroundColor="#059212">
+            <Grid
+                Margin="20,10,20,10"
+                ColumnSpacing="100"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
 
-            </VerticalStackLayout>
-
-            <Button
-                Margin="-140,-210,40,0"
-                BackgroundColor="Transparent"
-                BorderColor="#059212"
-                BorderWidth="2"
-                Clicked="Button_Clicked"
-                CornerRadius="20"
-                FontAttributes="Bold"
-                FontFamily="serif"
-                FontSize="10.5"
-                Text="Request Appointment"
-                TextColor="#059212"
-                WidthRequest="170" />
-            <Image
-                Margin="-290,-140,0,0"
-                HeightRequest="30"
-                Source="appt.png" />
-            <Label
-                Margin="50,-25,0,0"
-                FontSize="15"
-                Text="Appointments"
-                TextColor="Black" />
-            <Button
-                Margin="310,-30,40,0"
-                BackgroundColor="Transparent"
-                CornerRadius="20"
-                FontSize="10.5"
-                Text="VIEW ALL"
-                TextColor="Black"
-                WidthRequest="170" />
-
-            <Image
-                Margin="190,1,0,0"
-                HeightRequest="120"
-                Source="veterinary.png" />
-            <Label
-                Margin="20,-100,0,0"
-                FontSize="15"
-                Text="Book an appointment now!"
-                TextColor="Black" />
-
-            <VerticalStackLayout>
-                <Frame
-                    Margin="0,85,0,0"
-                    BackgroundColor="White"
-                    HeightRequest="160"
-                    WidthRequest="400" />
-
-            </VerticalStackLayout>
-            <Button
-                Margin="-140,-60,40,0"
-                BackgroundColor="Transparent"
-                BorderColor="#059212"
-                BorderWidth="2"
-                Clicked="Button_Clicked_1"
-                CornerRadius="20"
-                FontAttributes="Bold"
-                FontFamily="serif"
-                FontSize="10.5"
-                Text="Set Up Profile"
-                TextColor="#059212"
-                WidthRequest="170" />
-            <Image
-                Margin="-290,-140,0,0"
-                HeightRequest="30"
-                Source="appt.png" />
-            <Label
-                Margin="50,-25,0,0"
-                FontSize="15"
-                Text="Pet Profile"
-                TextColor="Black" />
-
-            <Image
-                Margin="190,1,0,0"
-                HeightRequest="120"
-                Source="veterinary.png" />
-            <Label
-                Margin="20,-95,0,0"
-                FontSize="15"
-                Text="Set Up your Pet`s Profile."
-                TextColor="Black" />
-            <Grid />
-
-        </VerticalStackLayout>
-    </ScrollView>
+                <ImageButton
+                    Margin="-150,0,0,0"
+                    BackgroundColor="Transparent"
+                    Clicked="OnPetProfileClicked"
+                    HeightRequest="25"
+                    HorizontalOptions="Start"
+                    Source="paw.png" />
+                <ImageButton
+                    Margin="150,0,0,0"
+                    BackgroundColor="Transparent"
+                    Clicked="OnAppointmentsClicked"
+                    HeightRequest="25"
+                    HorizontalOptions="Start"
+                    Source="appt.png" />
+            </Grid>
+        </StackLayout>
+    </Grid>
 </ContentPage>  

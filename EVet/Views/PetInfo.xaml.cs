@@ -15,23 +15,35 @@
         Pets _pets = new Pets();
 
         public ObservableCollection<string> Gender { get; set; } = new ObservableCollection<string>();
+    public Pets SelectedPet { get; set; } = new Pets();
 
-        
 
-        string srcs = "f_camera_b.png";
+
+    string srcs = "f_camera_b.png";
         public PetInfo()
 	    {
 		    InitializeComponent();
-
-            Gender.Add("Male");
+        InitializePickers();
+        Gender.Add("Male");
             Gender.Add("Female");
             txtgender.ItemsSource = Gender;
 
      
         }
-        private async void btnadd_Clicked(object sender, EventArgs e)
+    private void InitializePickers()
+    {
+        // Initialize the pet type picker
+        pettype.SelectedIndexChanged += OnPetTypeChanged;
+
+        // Initialize the breed pickers
+        petbreedDog.SelectedIndexChanged += OnBreedChanged;
+        petbreedCat.SelectedIndexChanged += OnBreedChanged;
+
+        
+    }
+    private async void btnadd_Clicked(object sender, EventArgs e)
         {
-            var selectedBreed = (string)breed.SelectedItem; // Convert selected item to string
+            
             var flename = fullNameUser;
             var selectedgen = txtgender.SelectedItem.ToString();
             //var selectedneut = txtneutered.SelectedItem.ToString();
@@ -71,7 +83,7 @@
 
             var adss = await _pets.AddPet(id,
                 txtname.Text,
-               selectedBreed,
+              SelectedPet.PetType, SelectedPet.Breed ,
                 selectedgen,
                 weightWithUnit,
                 _mainimgResult,flename
@@ -84,24 +96,67 @@
             else
             {
                 await DisplayAlert("Got it!", "Data has been successfully added.", "Okay");
-                txtname.Text = string.Empty;
-                breed.SelectedItem = null;
-                txtgender.SelectedItem = null;
-                weight.Text  = string.Empty ;
-                mainimage.Source = srcs;
-                Application.Current!.MainPage = new AppShell();
+            Pets newPet = new Pets
+            {
+                ID = id,
+                Name = txtname.Text,
+                PetType = SelectedPet.PetType,
+                Breed = SelectedPet.Breed,
+                Gender = selectedgen,
+                Weight = weightWithUnit,
+                ImageSource = _mainimgResult.FullPath // Assuming you have a way to get the image source
+            };
 
-            }
+            // Navigate to PetProfile with the new pet
+            await Navigation.PushAsync(new PetProfile(newPet));
+
+            // Clear the form
+            txtname.Text = string.Empty;
+          
+            txtgender.SelectedItem = null;
+            pettype.SelectedIndex = -1; // Reset pet type
+            petbreedDog.SelectedIndex = -1; // Reset dog breed
+            petbreedCat.SelectedIndex = -1; // Reset cat breed
+            weight.Text = string.Empty;
+            mainimage.Source = srcs;
+
         }
-    private async void OnPetSelected(object sender, SelectedItemChangedEventArgs e)
+        }
+    //private async void OnPetSelected(object sender, SelectedItemChangedEventArgs e)
+    //{
+    //    if (e.SelectedItem is Pets selectedPet)
+    //    {
+    //        // Navigate to the PetDetailPage and pass the selected pet
+    //        await Navigation.PushAsync(new PetProfile(selectedPet));
+    //    }
+    //}
+    private void OnPetTypeChanged(object sender, EventArgs e)
     {
-        if (e.SelectedItem is Pets selectedPet)
+        var selectedPetType = pettype.SelectedItem as string;
+        SelectedPet.PetType = selectedPetType;
+
+        if (selectedPetType == "Dog")
         {
-            // Navigate to the PetDetailPage and pass the selected pet
-            await Navigation.PushAsync(new PetProfile(selectedPet));
+            petbreedDog.IsVisible = true;
+            petbreedCat.IsVisible = false;
+        }
+        else if (selectedPetType == "Cat")
+        {
+            petbreedDog.IsVisible = false;
+            petbreedCat.IsVisible = true;
         }
     }
-
+    private void OnBreedChanged(object sender, EventArgs e)
+    {
+        if (petbreedDog.SelectedIndex != -1)
+        {
+            SelectedPet.Breed = petbreedDog.SelectedItem.ToString();
+        }
+        else if (petbreedCat.SelectedIndex != -1)
+        {
+            SelectedPet.Breed = petbreedCat.SelectedItem.ToString();
+        }
+    }
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
         {
             var result = await FilePicker.PickAsync(new PickOptions

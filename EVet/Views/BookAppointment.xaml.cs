@@ -1,7 +1,5 @@
 using EVet.Models;
-
 using static EVet.Includes.GlobalVariables;
-using EVet.Models;
 using Microsoft.Maui.Controls;
 using EVet.Pages;
 using CommunityToolkit.Maui.Views;
@@ -16,11 +14,25 @@ public partial class BookAppointment : ContentPage
         new DateTime(2023, 10, 25, 11, 0, 0)
     };
     Appointment _appt = new Appointment();
-   
+    public Appointment SelectedPet { get; set; } = new Appointment();
+
     public BookAppointment()
 	{
 		InitializeComponent();
         AppointmentDatePicker.MinimumDate = DateTime.Today; // Prevent past dates
+        InitializePickers();
+    }
+    private void InitializePickers()
+    {
+        // Initialize the pet type picker
+        ptype.SelectedIndexChanged += OnPetTypeChanged;
+
+        // Initialize the breed pickers
+        pbreedDog.SelectedIndexChanged += OnBreedChanged;
+        pbreedCat.SelectedIndexChanged += OnBreedChanged;
+
+        // Initialize the service picker
+        servicePicker.SelectedIndexChanged += OnServiceChanged;
     }
     public async void OnBookAppointmentClicked(object sender, EventArgs e)
     {
@@ -55,11 +67,16 @@ public partial class BookAppointment : ContentPage
 
       
         var appointment = new Appointment();
-        bool result = await appointment.AddAppointments(bid, PetNameEntry.Text, OwnerNameEntry.Text, selectedDate, AppointmentTimePicker.Time);
+        bool result = await appointment.AddAppointments(bid, PetNameEntry.Text, OwnerNameEntry.Text, SelectedPet.Type, SelectedPet.Breed, SelectedPet.Service, selectedDate, AppointmentTimePicker.Time);
 
         if (result)
         {
             await DisplayAlert("Success", "Your appointment has been booked!", "OK");
+            await Navigation.PushAsync(new PageAppointmentNotification(
+           PetNameEntry.Text,
+           OwnerNameEntry.Text,
+           AppointmentDatePicker.Date,
+           AppointmentTimePicker.Time));
         }
         else
         {
@@ -71,9 +88,15 @@ public partial class BookAppointment : ContentPage
         BookingProgressBar.Progress = 0;
         PetNameEntry.Text = string.Empty;
         OwnerNameEntry.Text = string.Empty;
+        ptype.SelectedIndex = -1; // Reset pet type
+        pbreedDog.SelectedIndex = -1; // Reset dog breed
+        pbreedCat.SelectedIndex = -1; // Reset cat breed
+        servicePicker.SelectedIndex = -1; // Reset service
         AppointmentDatePicker.Date = DateTime.Today; // Reset to today's date
         AppointmentTimePicker.Time = TimeSpan.Zero;
+
     }
+
 
     private bool IsTimeBooked(DateOnly date, TimeOnly time)
     {
@@ -85,6 +108,40 @@ public partial class BookAppointment : ContentPage
         return bookedAppointments.Any(appointment =>
             appointment.Date == dateTime.Date &&
             appointment.TimeOfDay == selectedTimeSpan);
+    }
+    private void OnPetTypeChanged(object sender, EventArgs e)
+    {
+        var selectedPetType = ptype.SelectedItem as string;
+       SelectedPet.Type = selectedPetType;
+
+        if (selectedPetType == "Dog")
+        {
+            pbreedDog.IsVisible = true;
+            pbreedCat.IsVisible = false;
+        }
+        else if (selectedPetType == "Cat")
+        {
+            pbreedDog.IsVisible = false;
+            pbreedCat.IsVisible = true;
+        }
+    }
+    private void OnServiceChanged(object sender, EventArgs e)
+    {
+        if (servicePicker.SelectedIndex != -1)
+        {
+            SelectedPet.Service = servicePicker.SelectedItem.ToString();
+        }
+    }
+    private void OnBreedChanged(object sender, EventArgs e)
+    {
+        if (pbreedDog.SelectedIndex != -1)
+        {
+            SelectedPet.Breed = pbreedDog.SelectedItem.ToString();
+        }
+        else if (pbreedCat.SelectedIndex != -1)
+        {
+            SelectedPet.Breed = pbreedCat.SelectedItem.ToString();
+        }
     }
     private void OnDateSelected(object sender, DateChangedEventArgs e)
         {

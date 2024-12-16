@@ -66,11 +66,11 @@ public partial class PageLogin : ContentPage
                     string userFullName = $"{user.FirstName} {user.LastName}";
                 GlobalVariables.IDD = iD;
                 GlobalVariables.Fullname = userFullName;
-                    await DisplayAlert("Access Granted", userFullName , "Okay");
-                  
-                    Application.Current.MainPage = new AppShell(iD, userFullName);
-                
-            
+                    await DisplayAlert("You Have Successfully Logged In", userFullName , "Okay");
+            await Navigation.PushAsync(new PageHome());
+            //Application.Current.MainPage = new PageHome();
+
+
         }
         catch (FirebaseException ex)
         {
@@ -111,6 +111,11 @@ public partial class PageLogin : ContentPage
         return userWithKey?.Key;
     }
 
+   
+        private async void OnBackButtonClicked(object sender, EventArgs e)
+        {
+        // Navigate back to the previous page
+        Application.Current!.MainPage = new PageFront();
+    }
 
-
-}
+    }

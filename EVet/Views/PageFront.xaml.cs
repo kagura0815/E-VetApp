@@ -6,11 +6,11 @@ public partial class PageFront : ContentPage
 	{
 		InitializeComponent();
 	}
-    private void btnadd_Clicked(object sender, EventArgs e)
+    private async void btnadd_Clicked(object sender, EventArgs e)
     {
         if (Application.Current != null)
         {
-            Application.Current.MainPage = new PageLogin();
+            await Navigation.PushAsync(new PageLogin());
         }
     }
 
@@ -21,4 +21,5 @@ public partial class PageFront : ContentPage
             Application.Current.MainPage = new PageLoginAdmin();
         }
     }
+   
 }

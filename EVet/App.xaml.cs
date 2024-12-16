@@ -1,4 +1,5 @@
-﻿using EVet.Views;
+﻿using EVet.Models;
+using EVet.Views;
 namespace EVet
 {
     public partial class App : Application
@@ -9,7 +10,11 @@ namespace EVet
         {
             InitializeComponent();
 
-            MainPage = new BookAppointment();
+
+            //MainPage = new PageHome();
+
+            MainPage = new NavigationPage(new PageFront());
+
         }
     }
 }

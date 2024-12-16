@@ -5,32 +5,38 @@ using EVet.Models;
 using Microsoft.Maui.Controls;
 using EVet.Pages;
 using CommunityToolkit.Maui.Views;
+using System.Diagnostics;
 namespace EVet.Views;
 
 public partial class PetProfile : ContentPage
 {
-    private Pets _pets;
    
-	public PetProfile()
+   
+	public PetProfile(Pets selectedPet)
 	{
-		InitializeComponent();
-   
        
+        InitializeComponent();
+        //_pets = pet;
+        //BindPetData();
+        BindingContext = selectedPet;
     }
-    public PetProfile(Pets pet) : this() // Call the parameterless constructor
-    {
-        _pets = pet;
-        DisplayPetDetails();
-    }
-    private void DisplayPetDetails()
-    {
-        petName.Text = _pets.Name;
-        petBreed.Text = $"Breed: {_pets.Breed}";
-        petGender.Text = $"Gender: {_pets.Gender}";
-        petWeight.Text = $"Weight: {_pets.Weight}";
-        petImage.Source = _pets.Images; // Assuming you have a property for the image source
-    }
+    //private void BindPetData()
+    //{
+    //    if (_pets == null)
+    //    {
+    //        Debug.WriteLine("Pets object is null.");
+    //        return;
+    //    }
+
+    //    // Assuming you have labels or other UI elements to display pet data
+    //    petNameLabel.Text = _pets.Name; // Replace with actual property names
+    //    petBreedLabel.Text = _pets.Breed;
+    //    petGenderLabel.Text = _pets.Gender;
+    //    petWeightLabel.Text = _pets.Weight;
+    //    petImage.Source = _pets.ImageSource; // Assuming you have a property for the image source
+    //}
    
+    
 
     //protected override async void OnAppearing()
     //    {
@@ -43,11 +49,23 @@ public partial class PetProfile : ContentPage
     //    //}
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-        Application.Current!.MainPage = new SelectPet();
+        await Navigation.PushAsync(new SelectPet());
     }
         private void ImageButton_Clicked(object sender, EventArgs e)
     {
         Application.Current!.MainPage = new PageSettings();
     }
+    private async void OnHomePageClick(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new PageHome());
+    }
 
+    private async void OnAppointmentsClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new BookAppointment());
+    }
+
+   
+
+   
 }

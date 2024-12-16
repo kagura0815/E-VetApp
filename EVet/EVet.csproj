@@ -58,6 +58,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\addphoto.png" />
 	  <None Remove="Resources\Images\appt.png" />
+	  <None Remove="Resources\Images\bac.jpg" />
 	  <None Remove="Resources\Images\back.png" />
 	  <None Remove="Resources\Images\bg.jpg" />
 	  <None Remove="Resources\Images\breed.png" />
@@ -118,6 +119,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\PageAdmin.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PageAppointmentNotification.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\PageFront.xaml">

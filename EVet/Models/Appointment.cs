@@ -17,16 +17,17 @@ namespace EVet.Models
         public string BId { get; set; }
         public string PetName { get; set; }
         public string OwnerName { get; set; }
+        public string Type { get; set; } // Dog or Cat
+        public string Breed { get; set; } // Breed of the pet
+        public string Service { get; set; } // Selected service
         public DateOnly AppointmentDate { get; set; }
 
         public TimeSpan AppointmentTime { get; set; }
         // Constructor
-        public Appointment()
-        {
-        }
+     
 
         // Method to add an appointment
-        public async Task<bool> AddAppointments(string bid, string petName, string ownerName, DateOnly appointmentDate, TimeSpan appointmentTime)
+        public async Task<bool> AddAppointments(string bid, string petName, string ownerName,string type, string petBreed,string service, DateOnly appointmentDate, TimeSpan appointmentTime)
         {
             // Simulate adding an appointment (e.g., saving to a database)
             try
@@ -36,6 +37,9 @@ namespace EVet.Models
                     BId = bid,
                     PetName = petName,
                     OwnerName = ownerName,
+                    Type = type,
+                    Breed = petBreed,
+                    Service = service,
                     AppointmentDate = appointmentDate,
                     AppointmentTime = appointmentTime
 

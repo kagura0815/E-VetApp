@@ -9,6 +9,6 @@ public partial class PageSettings : ContentPage
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-        Application.Current!.MainPage = new AppShell();
+        Application.Current!.MainPage = new PageHome();
     }
 }

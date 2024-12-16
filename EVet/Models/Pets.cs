@@ -27,11 +27,15 @@ namespace EVet.Models
         public string Breed { get; set; }
         //public string Birthday { get; set; }
         public string Gender { get; set; }
-     
-        public string Weight { get; set; }
+        public string PetType { get; set; } // e.g., "Dog", "Cat"
+        public string ImageSource { get; set; }
+        public string Service { get; set; } // e.g., "Grooming", "Checkup"
+    
+    public string Weight { get; set; }
         public async Task<bool> AddPet(
             string id,
             string name,
+            string type,
             string breed,
             //string birthday,
             string gender,
@@ -51,6 +55,7 @@ namespace EVet.Models
                     ID = idd,
                     Name = name,
                     Breed = breed,
+                    PetType = type,
                     //Birthday = birthday,
                     Gender = gender,
                     Weight = weight,

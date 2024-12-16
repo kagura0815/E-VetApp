@@ -4,93 +4,216 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
-    Title="PetProfile">
-    <VerticalStackLayout>
-        <Frame
-            Margin="0,0,0,0"
-            BackgroundColor="DarkGreen"
-            HeightRequest="60"
-            WidthRequest="500">
-            <Label
-                Margin="145,-6,0,0"
-                FontSize="18"
-                Text="Select a Pet" />
-        </Frame>
-        <Frame
-            Margin="-250,-50,0,15"
-            BackgroundColor="White"
-            CornerRadius="10"
-            HeightRequest="40"
-            WidthRequest="40">
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-            </Frame.GestureRecognizers>
-            <Image
-                x:Name="mainimage"
-                Margin="0,15,0,15"
-                Aspect="Fill"
-                HeightRequest="40"
-                Source="addphoto.png"
-                WidthRequest="40" />
-        </Frame>
+    Title=""
+    NavigationPage.HasNavigationBar="False">
+    <Grid Background="Transparent" BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
 
 
-        <StackLayout Padding="20">
-            <Image x:Name="petImage" HeightRequest="200" />
-            <Label
-                x:Name="petName"
-                FontAttributes="Bold"
-                FontSize="24" />
-            <Label x:Name="petBreed" FontSize="18" />
-            <Label x:Name="petGender" FontSize="18" />
-            <Label x:Name="petWeight" FontSize="18" />
+        </Grid.RowDefinitions>
+        <VerticalStackLayout Grid.Row="0">
 
-        </StackLayout>
-
-        <!--</VerticalStackLayout>
-        <BoxView StyleClass="Divider" />
-        <ScrollView>
-            <material:TabView
+            <Frame
                 Margin="0,0,0,0"
-                HeightRequest="200"
-                WidthRequest="370">
+                BackgroundColor="#059212"
+                HeightRequest="60"
+                WidthRequest="500">
+                <Label
+                    Margin="145,-6,0,0"
+                    FontSize="18"
+                    Text="Select a Pet" />
+            </Frame>
+            <Frame
+                Margin="-250,-50,0,15"
+                BackgroundColor="White"
+                CornerRadius="10"
+                HeightRequest="40"
+                WidthRequest="40">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Frame.GestureRecognizers>
+                <Image
+                    x:Name="mainimage"
+                    Margin="0,15,0,15"
+                    Aspect="Fill"
+                    HeightRequest="40"
+                    Source="addphoto.png"
+                    WidthRequest="40" />
+            </Frame>
 
-        -->
-        <!--  MEDICAL  -->
-        <!--
 
-                <material:TabItem Title="Medical">
-                    <material:TabItem.ContentTemplate />
-                </material:TabItem>
 
-        -->
-        <!--  LAB RESULTS  -->
-        <!--
 
-                <material:TabItem Title="Lab Results">
-                    <material:TabItem.ContentTemplate>
+
+
+            <BoxView StyleClass="Divider" />
+            <!--  Pet Information Section  -->
+            <ScrollView Grid.Row="1">
+                <StackLayout Padding="10">
+                    <Label x:Name="petNameLabel" Text="Pet Name" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="Center"
+                        Text="{Binding SelectedPet.Name}" />
+                    <Image
+                        x:Name="petImage"
+                        HeightRequest="100"
+                        Source="{Binding SelectedPet.ImageSource}"
+                        WidthRequest="100" />
+
+                    <Label x:Name="petGenderLabel" Text="Pet Gender" />
+                    <Label
+                        FontAttributes="Bold"
+                        Text="Gender:"
+                        TextColor="Black" />
+                    <Label Text="{Binding SelectedPet.Gender}" TextColor="Black" />
+
+                    <Label x:Name="petWeightLabel" Text="Pet Weight" />
+                    <Label
+                        FontAttributes="Bold"
+                        Text="Weight:"
+                        TextColor="Black" />
+                    <Label Text="{Binding SelectedPet.Weight}" TextColor="Black" />
+
+                    <Label x:Name="petBreedLabel" Text="Pet Breed" />
+                    <Label
+                        FontAttributes="Bold"
+                        Text="Breed:"
+                        TextColor="Black" />
+                    <Label Text="{Binding SelectedPet.Breed}" TextColor="Black" />
+                </StackLayout>
+            </ScrollView>
+            <!--<ScrollView
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="10,-80,0,10"
+                HorizontalOptions="FillAndExpand">
+                <CollectionView
+                    x:Name="listViewProducts"
+                    SelectionChanged="listproducts_SelectionChanged"
+                    SelectionMode="Single">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame HorizontalOptions="Center" StyleClass="PrimaryContainer">
-                                <Label Text="LAB RESULTS HERE!" />
-                            </Frame>
+            -->
+            <!--  Your item template here  -->
+            <!--  For example, you can display product name and description  -->
+            <!--
+                            <VerticalStackLayout
+                                Margin="20"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <ScrollView>
+                                    <Frame
+                                        Padding="10"
+                                        BackgroundColor="#212025"
+                                        BorderColor="White"
+                                        CornerRadius="0"
+                                        VerticalOptions="Start">
+
+                                        <ContentView.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                x:Name="PreviewTheItem"
+                                                CommandParameter="{Binding .}"
+                                                Tapped="PreviewTheItem_Tapped" />
+                                        </ContentView.GestureRecognizers>
+                                        <Grid RowSpacing="10">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+            -->
+            <!--  INSERT DATA  -->
+            <!--
+
+                                        </Grid>
+                                    </Frame>
+                                </ScrollView>
+                            </VerticalStackLayout>
                         </DataTemplate>
-                    </material:TabItem.ContentTemplate>
-                </material:TabItem>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>-->
 
-        -->
-        <!--  PRESCRIPTIONS  -->
-        <!--
+            <StackLayout
+                Grid.Row="2"
+                Margin="20,275,20,10"
+                BackgroundColor="#059212"
+                WidthRequest="360">
+                <Grid
+                    Margin="20,10,20,10"
+                    ColumnSpacing="100"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <ImageButton
+                        Margin="-150,0,0,0"
+                        BackgroundColor="Transparent"
+                        Clicked="OnHomePageClick"
+                        HeightRequest="20"
+                        HorizontalOptions="Start"
+                        Source="home.png" />
 
-                <material:TabItem Title="Prescriptions">
-                    <material:TabItem.ContentTemplate>
-                        <DataTemplate>
-                            <Label Text="Third Tab" />
-                        </DataTemplate>
-                    </material:TabItem.ContentTemplate>
-                </material:TabItem>
-            </material:TabView>-->
+                    <ImageButton
+                        Margin="150,0,0,0"
+                        BackgroundColor="Transparent"
+                        Clicked="OnAppointmentsClicked"
+                        HeightRequest="25"
+                        HorizontalOptions="Start"
+                        Source="appt.png" />
+                </Grid>
+            </StackLayout>
 
-        <!--</ScrollView>-->
+            <!--<ScrollView>
+            <StackLayout Padding="10">
+                <Label x:Name="petNameLabel" Text="Pet Name" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    Text="{Binding SelectedPet.Name}" />
+                <Image
+                    x:Name="petImage"
+                    HeightRequest="100"
+                    WidthRequest="100" />
+                <Image
+                    Aspect="AspectFit"
+                    HeightRequest="200"
+                    HorizontalOptions="Center"
+                    Source="{Binding SelectedPet.ImageSource}" />
+                <Label x:Name="petGenderLabel" Text="Pet Gender" />
+                <Label
+                    FontAttributes="Bold"
+                    Text="Gender:"
+                    TextColor="Black" />
+                <Label Text="{Binding SelectedPet.Gender}" TextColor="Black" />
 
-    </VerticalStackLayout>
+                <Label x:Name="petWeightLabel" Text="Pet Weight" />
+                <Label
+                    FontAttributes="Bold"
+                    Text="Weight:"
+                    TextColor="Black" />
+                <Label Text="{Binding SelectedPet.Weight}" TextColor="Black" />
+
+                <Label x:Name="petBreedLabel" Text="Pet Breed" />
+                <Label
+                    FontAttributes="Bold"
+                    Text="Breed:"
+                    TextColor="Black" />
+                <Label Text="{Binding SelectedPet.Breed}" TextColor="Black" />
+            </StackLayout>
+        </ScrollView>-->
+
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>
