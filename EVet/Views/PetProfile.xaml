@@ -3,9 +3,15 @@
     x:Class="EVet.Views.PetProfile"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:EVet.ViewModels"
     xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
     Title=""
     NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <local:PetProfileViewModel />
+        <!--  Ensure you have the correct namespace for your ViewModel  -->
+    </ContentPage.BindingContext>
     <Grid Background="Transparent" BackgroundColor="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -18,7 +24,7 @@
 
             <Frame
                 Margin="0,0,0,0"
-                BackgroundColor="#059212"
+                BackgroundColor="Transparent"
                 HeightRequest="60"
                 WidthRequest="500">
                 <Label
@@ -49,44 +55,138 @@
 
 
 
-            <BoxView StyleClass="Divider" />
+            <BoxView Margin="0,-10,0,0" StyleClass="Divider" />
             <!--  Pet Information Section  -->
-            <ScrollView Grid.Row="1">
-                <StackLayout Padding="10">
-                    <Label x:Name="petNameLabel" Text="Pet Name" />
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="24"
-                        HorizontalOptions="Center"
-                        Text="{Binding SelectedPet.Name}" />
-                    <Image
-                        x:Name="petImage"
-                        HeightRequest="100"
-                        Source="{Binding SelectedPet.ImageSource}"
-                        WidthRequest="100" />
 
-                    <Label x:Name="petGenderLabel" Text="Pet Gender" />
-                    <Label
-                        FontAttributes="Bold"
-                        Text="Gender:"
-                        TextColor="Black" />
-                    <Label Text="{Binding SelectedPet.Gender}" TextColor="Black" />
+            <StackLayout Padding="10">
+                <Frame
+                    Margin="0,0,0,0"
+                    BackgroundColor="White"
+                    CornerRadius="10"
+                    HeightRequest="300"
+                    WidthRequest="340">
+                    <Grid ColumnDefinitions="Auto, *">
+                        <Line Grid.Column="0" WidthRequest="5" />
+                        <StackLayout
+                            Grid.Column="1"
+                            Margin="15"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="Fill"
+                            Orientation="Horizontal">
+                            <Grid ColumnDefinitions="auto,auto">
+                                <Border
+                                    Grid.Column="0"
+                                    Margin="90,-130,10,10"
+                                    HeightRequest="100"
+                                    StrokeShape="RoundRectangle 50"
+                                    VerticalOptions="Center"
+                                    WidthRequest="100">
 
-                    <Label x:Name="petWeightLabel" Text="Pet Weight" />
-                    <Label
-                        FontAttributes="Bold"
-                        Text="Weight:"
-                        TextColor="Black" />
-                    <Label Text="{Binding SelectedPet.Weight}" TextColor="Black" />
+                                    <Image Aspect="AspectFill" Source="{Binding Images}" />
 
-                    <Label x:Name="petBreedLabel" Text="Pet Breed" />
-                    <Label
-                        FontAttributes="Bold"
-                        Text="Breed:"
-                        TextColor="Black" />
-                    <Label Text="{Binding SelectedPet.Breed}" TextColor="Black" />
-                </StackLayout>
-            </ScrollView>
+
+                                </Border>
+                                <Grid
+                                    Grid.Column="1"
+                                    Margin="-190,110,0,0"
+                                    ColumnDefinitions="Auto, *"
+                                    RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+                                    RowSpacing="1">
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        FontSize="15"
+                                        HorizontalOptions="Start"
+                                        Text="Pet Name:"
+                                        TextColor="black"
+                                        VerticalOptions="CenterAndExpand" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        LineBreakMode="TailTruncation"
+                                        Text="{Binding Name}"
+                                        TextColor="black" />
+
+
+
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        FontSize="15"
+                                        HorizontalOptions="Start"
+                                        Text="Pet Gender:"
+                                        TextColor="black"
+                                        VerticalOptions="CenterAndExpand" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        LineBreakMode="TailTruncation"
+                                        Text="{Binding Gender}"
+                                        TextColor="black" />
+                                    <Label
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        FontSize="15"
+                                        HorizontalOptions="Start"
+                                        Text="Pet Type:"
+                                        TextColor="black"
+                                        VerticalOptions="CenterAndExpand" />
+                                    <Label
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        LineBreakMode="TailTruncation"
+                                        Text="{Binding PetType}"
+                                        TextColor="black" />
+                                    <Label
+                                        Grid.Row="4"
+                                        Grid.Column="0"
+                                        FontSize="15"
+                                        HorizontalOptions="Start"
+                                        Text="Pet Breed:"
+                                        TextColor="black"
+                                        VerticalOptions="CenterAndExpand" />
+                                    <Label
+                                        Grid.Row="4"
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        LineBreakMode="TailTruncation"
+                                        Text="{Binding Breed}"
+                                        TextColor="black" />
+                                    <Label
+                                        Grid.Row="5"
+                                        Grid.Column="0"
+                                        FontSize="15"
+                                        HorizontalOptions="Start"
+                                        Text="Pet Weight:"
+                                        TextColor="black"
+                                        VerticalOptions="CenterAndExpand" />
+                                    <Label
+                                        Grid.Row="5"
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        LineBreakMode="TailTruncation"
+                                        Text="{Binding Weight}"
+                                        TextColor="black" />
+
+
+
+
+                                </Grid>
+
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+
             <!--<ScrollView
                 Grid.Row="1"
                 Grid.Column="1"
@@ -148,7 +248,7 @@
 
             <StackLayout
                 Grid.Row="2"
-                Margin="20,275,20,10"
+                Margin="20,325,20,10"
                 BackgroundColor="#059212"
                 WidthRequest="360">
                 <Grid

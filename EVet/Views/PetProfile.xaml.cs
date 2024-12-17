@@ -12,13 +12,13 @@ public partial class PetProfile : ContentPage
 {
    
    
-	public PetProfile(Pets selectedPet)
+	public PetProfile(Pets pets)
 	{
        
         InitializeComponent();
         //_pets = pet;
         //BindPetData();
-        BindingContext = selectedPet;
+        BindingContext = pets;
     }
     //private void BindPetData()
     //{

@@ -31,18 +31,25 @@ public partial class SelectPet : ContentPage
     }
     private async Task FillList()
     {
-        ListPets.ItemsSource = await _petlist.GetPet();
+        var pets = await _petlist.GetPets();
+        PetsList.Clear(); // Clear existing items
+        foreach (var pet in pets)
+        {
+            PetsList.Add(pet); // Add each pet to the ObservableCollection
+        }
     }
     private async void ListPets_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (e.CurrentSelection.Count > 0)
         {
-            var selectedPet = e.CurrentSelection[0] as Pets; // Assuming Pets is your model
+            // Assuming Pets is a collection and you need to get a single Pet from it
+            var selectedPet = e.CurrentSelection[0] as Pets; // Change to Pet if you have a single pet model
             if (selectedPet != null)
             {
-                await Navigation.PushAsync(new PetProfile(selectedPet));
+                await Navigation.PushAsync(new PetProfile(selectedPet)); // Pass the Pet object
             }
         }
+
     }
 
     private async void OnBackButtonClicked(object sender, EventArgs e)

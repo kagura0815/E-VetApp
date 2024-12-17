@@ -19,7 +19,7 @@
                 FontAttributes="Bold"
                 FontSize="20"
                 HorizontalOptions="Center"
-                Text="Welcome to"
+                Text="Welcome to  "
                 TextColor="white" />
             <Label
                 Margin="155,-47,0,0"
@@ -27,7 +27,7 @@
                 FontAttributes="Bold"
                 FontSize="20"
                 HorizontalOptions="Center"
-                Text="Three Star Animal Clinic!"
+                Text=" Three Star Animal Clinic!"
                 TextColor="#9BEC00" />
 
             <Button

@@ -96,14 +96,14 @@
                     FontSize="15"
                     Text="Appointments"
                     TextColor="Black" />
-                <Button
+                <!--<Button
                     Margin="310,-30,40,0"
                     BackgroundColor="Transparent"
                     CornerRadius="20"
                     FontSize="10.5"
                     Text="VIEW ALL"
                     TextColor="Black"
-                    WidthRequest="170" />
+                    WidthRequest="170" />-->
 
                 <Image
                     Margin="190,1,0,0"
@@ -117,7 +117,7 @@
 
                 <VerticalStackLayout>
                     <Frame
-                        Margin="0,85,0,0"
+                        Margin="0,95,0,0"
                         BackgroundColor="White"
                         HeightRequest="160"
                         WidthRequest="400" />
@@ -133,7 +133,7 @@
                     FontAttributes="Bold"
                     FontFamily="serif"
                     FontSize="10.5"
-                    Text="Set Up Profile"
+                    Text="Add Pet"
                     TextColor="#059212"
                     WidthRequest="170" />
                 <Image

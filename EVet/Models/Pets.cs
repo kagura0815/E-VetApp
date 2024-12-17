@@ -19,8 +19,41 @@ using EVet.Includes;
 using Firebase.Database;
 namespace EVet.Models
 {
-   public class Pets
+   
+
+    public class Pets
     {
+       
+            //public async Task<List<Pet>> GetPet()
+            //{
+            //    // Simulate data retrieval
+            //    return await Task.FromResult(new List<Pet>
+            //{
+            //    new Pet { Name = "Buddy", ImageSource = "buddy.png", Gender = "Male", Weight = "30 lbs", Breed = "Golden Retriever" },
+            //    new Pet { Name = "Mittens", ImageSource = "mittens.png", Gender = "Female", Weight = "10 lbs", Breed = "Siamese" }
+            //    // Add more pets as needed
+            //});
+            //}
+        public async Task<List<Pets>> GetPets()
+        {
+
+            return (await client
+                .Child($"Users/{IDD}/Pets")
+                .OnceAsync<Pets>()).Select(item => new Pets
+                {
+                    Name = item.Object.Name,
+                    Breed = item.Object.Breed,
+                    PetType = item.Object.PetType,
+                    //Birthday = item.Object.Birthday,
+                    Gender = item.Object.Gender,
+                    Images = item.Object.Images,
+                    Weight = item.Object.Weight,
+
+
+
+                }).ToList();
+        }
+        public List<Pets> PetList { get; set; } = new List<Pets>();
         public string Images { get; set; }
         public string ID { get; set; }
         public string Name { get; set; }
@@ -61,6 +94,7 @@ namespace EVet.Models
                     Weight = weight,
                     Images = _mainimg
                 };
+              
 
                 // Attempt to post the pet data to the database
                 await client.Child($"Users/{IDD}/Pets").PostAsync(pets);
@@ -78,7 +112,10 @@ namespace EVet.Models
                 return false; // Return false to indicate failure
             }
         }
-
+        public void AddPet(Pets pet)
+        {
+            PetList.Add(pet);
+        }
 
         public class pets
         {
@@ -159,21 +196,19 @@ namespace EVet.Models
                 return false;
             }
         }
-        public async Task<List<Pets>> GetPet()
+        public async Task<List<Pets>> GetPetsAsync(string userId)
         {
             return (await client
-                .Child($"Users/{IDD}/Pets")
-                .OnceAsync<Pets>()).Select(item => new Pets
+                .Child($"Users/{userId}/Pets")
+                .OnceAsync<Pets>())
+                .Select(item => new Pets
                 {
+                    ID = item.Object.ID,
                     Name = item.Object.Name,
-                    Breed=item.Object.Breed,
-                    //Birthday = item.Object.Birthday,
+                    Breed = item.Object.Breed,
                     Gender = item.Object.Gender,
-                  Images = item.Object.Images,
-                    Weight=item.Object.Weight,
-
-                   
-
+                    Weight = item.Object.Weight,
+                    Images = item.Object.Images
                 }).ToList();
         }
         public async Task<String> GetPetkey(string _id)
@@ -188,19 +223,11 @@ namespace EVet.Models
                 id = evaluateCode.Object.ID;
                 name = evaluateCode.Object.Name;
                 breed = evaluateCode.Object.Breed;
-                //birthday = evaluateCode.Object.Birthday;
+               
                 gender = evaluateCode.Object.Gender;
             
                 weight = evaluateCode.Object.Weight;
-                //recipekey = evaluateCode.Key;
-                //code = evaluateCode.Object.Code;
-                //recipename = evaluateCode.Object.RecipeName;
-                //catname = evaluateCode.Object.Category;
-                //mealnm = evaluateCode.Object.Meal;
-                //duration = evaluateCode.Object.Duration;
-                //instruction = evaluateCode.Object.Instruction;
-                //ingredient = evaluateCode.Object.Ingredient;
-                //recipeimage = evaluateCode.Object.Images;
+               
                 return evaluateCode.Key;
             }
             return null;
@@ -287,21 +314,7 @@ namespace EVet.Models
 
         //    )).ToList();
         //}
-        public async Task<List<Pets>> GetPetsAsync(string userId)
-        {
-            return (await client
-                .Child($"Users/{userId}/Pets")
-                .OnceAsync<Pets>())
-                .Select(item => new Pets
-                {
-                    ID = item.Object.ID,
-                    Name = item.Object.Name,
-                    Breed = item.Object.Breed,
-                    Gender = item.Object.Gender,
-                    Weight = item.Object.Weight,
-                    Images = item.Object.Images
-                }).ToList();
-        }
+        
     }
 }
 

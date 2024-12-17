@@ -19,6 +19,11 @@ public partial class PageAppointmentNotification : ContentPage
         AppointmentTimeLabel.Text = appointmentTime.ToString(@"hh\:mm"); // Time in HH:mm format
         StatusLabel.Text = "Pending"; // Default status
     }
+
+    public PageAppointmentNotification()
+    {
+    }
+
     private async void OnConfirmClicked(object sender, EventArgs e)
     {
         // Logic to confirm the appointment

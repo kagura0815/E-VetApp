@@ -14,11 +14,11 @@ public partial class PageFront : ContentPage
         }
     }
 
-    private void btnadd_Clicked1(object sender, EventArgs e)
+    private async void btnadd_Clicked1(object sender, EventArgs e)
     {
         if (Application.Current != null)
         {
-            Application.Current.MainPage = new PageLoginAdmin();
+            await Navigation.PushAsync(new PageLoginAdmin());
         }
     }
    

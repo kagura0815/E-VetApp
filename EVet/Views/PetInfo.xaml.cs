@@ -24,9 +24,7 @@
 	    {
 		    InitializeComponent();
         InitializePickers();
-        Gender.Add("Male");
-            Gender.Add("Female");
-            txtgender.ItemsSource = Gender;
+        
 
      
         }
@@ -81,21 +79,21 @@
             }
             string weightWithUnit = weight.Text + " Kg";
 
-            var adss = await _pets.AddPet(id,
-                txtname.Text,
-              SelectedPet.PetType, SelectedPet.Breed ,
-                selectedgen,
-                weightWithUnit,
-                _mainimgResult,flename
-               );
-            if (!adss)
-            {
-                await DisplayAlert("Warning!", "Data has been failed to add.", "Okay");
+            //var adss = await _pets.AddPet(id,
+            //    txtname.Text,
+            //  SelectedPet.PetType, SelectedPet.Breed ,
+            //    selectedgen,
+            //    weightWithUnit,
+            //    _mainimgResult,flename
+            //   );
+            //if (!adss)
+            //{
+            //    await DisplayAlert("Warning!", "Data has been failed to add.", "Okay");
 
-            }
-            else
-            {
-                await DisplayAlert("Got it!", "Data has been successfully added.", "Okay");
+            //}
+            //else
+            //{
+            //    await DisplayAlert("Got it!", "Data has been successfully added.", "Okay");
             Pets newPet = new Pets
             {
                 ID = id,
@@ -107,21 +105,41 @@
                 ImageSource = _mainimgResult.FullPath // Assuming you have a way to get the image source
             };
 
+
+        var adss = await _pets.AddPet(id,
+     newPet.Name,
+     newPet.PetType,
+     newPet.Breed,
+     newPet.Gender,
+     newPet.Weight,
+     _mainimgResult,
+     flename
+ );
+
+        if (!adss)
+        {
+            await DisplayAlert("Warning!", "Data has been failed to add.", "Okay");
+        }
+        else
+        {
+            await DisplayAlert("Got it!", "Data has been successfully added.", "Okay");
+
             // Navigate to PetProfile with the new pet
-            await Navigation.PushAsync(new PetProfile(newPet));
+            await Navigation.PushAsync(new PetProfile(newPet)); // Pass the Pet object
 
             // Clear the form
             txtname.Text = string.Empty;
-          
             txtgender.SelectedItem = null;
             pettype.SelectedIndex = -1; // Reset pet type
             petbreedDog.SelectedIndex = -1; // Reset dog breed
             petbreedCat.SelectedIndex = -1; // Reset cat breed
             weight.Text = string.Empty;
             mainimage.Source = srcs;
+        }
+        PetStore.Pets.Add(newPet);
 
-        }
-        }
+
+    }
     //private async void OnPetSelected(object sender, SelectedItemChangedEventArgs e)
     //{
     //    if (e.SelectedItem is Pets selectedPet)

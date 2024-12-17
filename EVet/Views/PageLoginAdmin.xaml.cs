@@ -7,15 +7,15 @@ public partial class PageLoginAdmin : ContentPage
 {
     Users _login = new();
     public PageLoginAdmin()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
 
-    
+
 
     private void showPasswordCheckBox1_CheckChanged(object sender, EventArgs e)
     {
-        txtpsword.IsPassword = !showPasswordCheckBox1.IsChecked;
+        AdminPasswordEntry.IsPassword = !showPasswordCheckBox1.IsChecked;
     }
 
     private void Button_Clicked(object sender, EventArgs e)
@@ -25,28 +25,18 @@ public partial class PageLoginAdmin : ContentPage
 
     private async void Button_Clicked_1(object sender, EventArgs e)
     {
-        if (string.IsNullOrEmpty(txtusname.Text))
-        {
-            await DisplayAlert("Data validation", "Please Enter User Name!", "Got it");
-            return;
-        }
-        bool a;
-        a = await _login.Getuser(txtusname.Text, txtpsword.Text);
-        if (a)
-        {
-            await DisplayAlert("Username Validation", "Access Granted", " OK!!!");
-            Application.Current!.MainPage = new PageAdmin();
+        string username = AdminUsernameEntry.Text;
+        string password = AdminPasswordEntry.Text;
 
+        if (username == "admin" && password == "admin123")
+        {
+            // Navigate to Admin Dashboard
+            await Navigation.PushAsync(new PageAdmin());
         }
         else
         {
-
-
-            await DisplayAlert("Username Validation", "Access Denied", " OK!!!");
-            txtusname.Text = string.Empty;
-            txtpsword.Text = string.Empty;
-            return;
+            // Show error message
+            AdminStatusLabel.Text = "Invalid username or password.";
         }
-
     }
 }

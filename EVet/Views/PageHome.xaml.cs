@@ -45,6 +45,7 @@ public partial class PageHome : ContentPage
         {
             Name = name,
             ImageSource = images,
+            PetType = petType,
             Gender = gender,
             Weight =weight,
             Breed = breed

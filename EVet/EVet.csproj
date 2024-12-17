@@ -121,6 +121,9 @@
 	  <MauiXaml Update="Views\PageAdmin.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\PageAdminViewAppointment.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\PageAppointmentNotification.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
