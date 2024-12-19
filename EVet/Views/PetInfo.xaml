@@ -168,19 +168,53 @@
                 TitleColor="White"
                 VerticalOptions="Center" />-->
 
-
+                    <Label
+                        Margin="0,10,0,0"
+                        FontFamily="serif"
+                        Text="Birthdate:" />
+                    <DatePicker
+                        x:Name="txtbirthday"
+                        Margin="0,10,0,0"
+                        Format="D" />
 
                     <Label
-                        Margin="10,20,0,0"
+                        Margin="5,20,0,0"
                         Text="Weight:"
                         TextColor="White" />
                     <Entry
                         x:Name="weight"
                         Keyboard="Numeric"
                         Placeholder="Weight(KG)" />
-
-
-
+                    <Label
+                        Margin="5,10,0,0"
+                        Text="Allergies:"
+                        TextColor="White" />
+                    <Picker
+                        x:Name="allergies"
+                        Title="Allergies"
+                        Margin="0,10,0,0">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Yes</x:String>
+                                <x:String>No</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <Label
+                        Margin="5,10,0,0"
+                        Text="Neutered:"
+                        TextColor="White" />
+                    <Picker
+                        x:Name="neutered"
+                        Title="Neutered"
+                        Margin="0,10,0,0">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Yes</x:String>
+                                <x:String>No</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
 
                     <VerticalStackLayout>
                         <Button

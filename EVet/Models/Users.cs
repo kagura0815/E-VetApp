@@ -22,7 +22,7 @@ namespace EVet.Models
         public async Task<bool> _AddUser(string idd, string fname,
            string lname, string cnum, string address, string user, string pass)
         {
-            var uidd = GlobalVariables.uid; // Assuming IDD is a global variable for user ID
+            
             var users = new Users()
             {
 

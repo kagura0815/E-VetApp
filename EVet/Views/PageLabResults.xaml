@@ -23,8 +23,8 @@
                     FontAttributes="Bold"
                     FontSize="30"
                     HorizontalOptions="Center"
-                    Text="Input Lab Results"
-                    TextColor="White" />
+                    Text="Lab Results Form"
+                    TextColor="Black" />
 
                 <!--  Lab Results Input Section  -->
                 <StackLayout
@@ -50,25 +50,16 @@
                         Placeholder="Enter owner name"
                         TextColor="Black" />
 
-                    <Label
-                        FontSize="18"
-                        Text="Date"
-                        TextColor="Black" />
-                    <DatePicker x:Name="DatePicker" TextColor="Black" />
+
 
                     <Label
                         FontSize="18"
-                        Text="Time"
-                        TextColor="Black" />
-                    <TimePicker x:Name="TimePicker" TextColor="Black" />
-
-                    <Label
-                        FontSize="18"
-                        Text="Test Name"
+                        Text="Type of Test"
                         TextColor="Black" />
                     <Picker
                         x:Name="TestNamePicker"
                         Title="Select Test"
+                        TextColor="Black"
                         TitleColor="Black">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
@@ -82,7 +73,7 @@
 
                     <Label
                         FontSize="18"
-                        Text="Result"
+                        Text="Test Result"
                         TextColor="Black" />
                     <Entry
                         x:Name="ResultEntry"
@@ -91,11 +82,11 @@
 
                     <Label
                         FontSize="18"
-                        Text="Normal Range"
+                        Text="Range"
                         TextColor="Black" />
                     <Entry
-                        x:Name="NormalRangeEntry"
-                        Placeholder="Enter normal range"
+                        x:Name="RangeEntry"
+                        Placeholder="Enter result"
                         TextColor="Black" />
 
                     <Button

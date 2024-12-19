@@ -24,10 +24,10 @@
 	    {
 		    InitializeComponent();
         InitializePickers();
-        
 
-     
-        }
+        txtbirthday.MaximumDate = DateTime.Now;
+
+    }
     private void InitializePickers()
     {
         // Initialize the pet type picker
@@ -36,19 +36,22 @@
         // Initialize the breed pickers
         petbreedDog.SelectedIndexChanged += OnBreedChanged;
         petbreedCat.SelectedIndexChanged += OnBreedChanged;
-
+        
         
     }
     private async void btnadd_Clicked(object sender, EventArgs e)
         {
             
-            var flename = fullNameUser;
-            var selectedgen = txtgender.SelectedItem.ToString();
-            //var selectedneut = txtneutered.SelectedItem.ToString();
-       
-            //var selecteddate = txtbirthday.Date.ToString();
-            //var selectedml = txtmeal.SelectedItem.ToString();
-            var id = Guid.NewGuid().ToString();
+        var flename = fullNameUser;
+        var selectedgen = txtgender.SelectedItem.ToString();
+        var selectedall = allergies.SelectedItem.ToString();
+        var selectedneut = neutered.SelectedItem.ToString();
+        //var selectedneut = txtneutered.SelectedItem.ToString();
+
+        //var selecteddate = txtbirthday.Date.ToString();
+        //var selectedml = txtmeal.SelectedItem.ToString();
+        string formattedDate = txtbirthday.Date.ToString("MM/dd/yyyy");
+        var id = Guid.NewGuid().ToString();
             if (string.IsNullOrEmpty(txtname.Text))
             {
                 await DisplayAlert("Data validation", "Please Fill up Name!", "Got it");
@@ -96,12 +99,15 @@
             //    await DisplayAlert("Got it!", "Data has been successfully added.", "Okay");
             Pets newPet = new Pets
             {
-                ID = id,
+              
                 Name = txtname.Text,
                 PetType = SelectedPet.PetType,
                 Breed = SelectedPet.Breed,
                 Gender = selectedgen,
+                Birthday = formattedDate,
                 Weight = weightWithUnit,
+                Allergies = selectedall,
+                Neutered = selectedneut,
                 Images = _mainimgResult.FullPath // Assuming you have a way to get the image source
             };
 
@@ -111,7 +117,10 @@
      newPet.PetType,
      newPet.Breed,
      newPet.Gender,
+     newPet.Birthday.ToString(),
      newPet.Weight,
+     newPet.Allergies,
+     newPet.Neutered,
      _mainimgResult,
      flename
  );
@@ -130,9 +139,12 @@
             // Clear the form
             txtname.Text = string.Empty;
             txtgender.SelectedItem = null;
+            allergies.SelectedItem = null;
+            neutered.SelectedItem = null;
             pettype.SelectedIndex = -1; // Reset pet type
             petbreedDog.SelectedIndex = -1; // Reset dog breed
             petbreedCat.SelectedIndex = -1; // Reset cat breed
+            txtbirthday.Date = DateTime.Now;
             weight.Text = string.Empty;
             mainimage.Source = srcs;
         }
@@ -201,4 +213,6 @@
         {
             //Application.Current!.MainPage = new DisplayRecipe();
         }
-    }
+
+    
+}

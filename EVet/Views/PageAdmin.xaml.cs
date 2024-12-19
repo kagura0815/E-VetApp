@@ -11,20 +11,19 @@ public partial class PageAdmin : ContentPage
 	}
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
-        Application.Current!.MainPage = new PageSettings();
-
+        await Navigation.PushAsync(new PageSettings());
         //await Navigation.PopAsync();
 
     }
 
-    private async void Button_Clicked(object sender, EventArgs e)
+    private async void ViewAllAppointments(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new PageAdminViewAppointment());
     }
 
-    private async void Button_Clicked_1(object sender, EventArgs e)
+    private async void AddLabResults(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new PetInfo());
+        await Navigation.PushAsync(new ViewAllPets());
 
     }
 

@@ -33,44 +33,46 @@
         <StackLayout Grid.Row="1">
             <Border
                 Grid.Row="1"
-                Margin="-5,-80,-5,0"
+                Margin="-5,-90,-5,0"
                 Padding="0"
                 BackgroundColor="Transparent"
-                StrokeShape="RoundRectangle 100"
-                StrokeThickness="0">
+                StrokeShape="RoundRectangle 120"
+                StrokeThickness="0"
+                WidthRequest="450">
                 <Image
-                    Margin="10,70.2,10,10"
+                    Margin="10,80.2,10,10"
                     Aspect="AspectFill"
-                    HeightRequest="200"
+                    HeightRequest="150"
                     Source="doggy.jpg" />
 
             </Border>
-
             <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
 
-                <Border
-                    Grid.Row="1"
-                    Margin="25,-125,0,0"
-                    HeightRequest="70"
-                    HorizontalOptions="FillAndExpand"
-                    Stroke="White"
-                    StrokeShape="RoundRectangle 40"
-                    StrokeThickness="2"
-                    WidthRequest="70">
+                <!--<Border
+          Grid.Row="1"
+          Margin="25,-125,0,0"
+          HeightRequest="70"
+          HorizontalOptions="FillAndExpand"
+          Stroke="White"
+          StrokeShape="RoundRectangle 40"
+          StrokeThickness="2"
+          WidthRequest="70">
 
-                    <Image
-                        x:Name="imglogo"
-                        Aspect="AspectFill"
-                        HorizontalOptions="StartAndExpand"
-                        Source="jing.jpg" />
-                </Border>
+          <Image
+              x:Name="imglogo"
+              Aspect="AspectFill"
+              HorizontalOptions="StartAndExpand"
+              Source="jing.jpg" />
+      </Border>-->
 
                 <Grid Grid.Column="1">
                     <Label
                         x:Name="lblcompanyname"
-                        Margin="20,-125,0,0"
+                        Margin="0,-90,0,0"
+                        FontAttributes="Bold"
                         FontFamily="RobotoCondensed"
-                        FontSize="25"
+                        FontSize="45"
+                        HorizontalOptions="Center"
                         Text="WELCOME!"
                         TextColor="White"
                         TextTransform="Uppercase"
@@ -143,12 +145,12 @@
                                 BackgroundColor="Transparent"
                                 BorderColor="#059212"
                                 BorderWidth="2"
-                                Clicked="Button_Clicked"
+                                Clicked="ViewAllAppointments"
                                 CornerRadius="20"
                                 FontAttributes="Bold"
                                 FontFamily="serif"
                                 FontSize="10.5"
-                                Text="Request Appointment"
+                                Text="View Appointments"
                                 TextColor="#059212"
                                 WidthRequest="170" />
 
@@ -197,12 +199,12 @@
                                 BackgroundColor="Transparent"
                                 BorderColor="#059212"
                                 BorderWidth="2"
-                                Clicked="Button_Clicked"
+                                Clicked="AddLabResults"
                                 CornerRadius="20"
                                 FontAttributes="Bold"
                                 FontFamily="serif"
                                 FontSize="10.5"
-                                Text="View Appointments"
+                                Text="Add LabResults"
                                 TextColor="#059212"
                                 WidthRequest="170" />
 

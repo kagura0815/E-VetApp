@@ -1,9 +1,14 @@
 using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
 using System.Reflection;
 using System.Xml.Linq;
+using EVet.Includes;
+using EVet.Models;
 using static EVet.Includes.GlobalVariables;
+using Firebase.Database;
+using Firebase.Database.Query;
 
 namespace EVet.Views;
+
 public partial class PageLabResults : ContentPage
 {
     public PageLabResults()
@@ -13,43 +18,62 @@ public partial class PageLabResults : ContentPage
 
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
-        // Validate input
-        if (string.IsNullOrWhiteSpace(PetNameEntry.Text) ||
-            string.IsNullOrWhiteSpace(OwnerNameEntry.Text) ||
-            TestNamePicker.SelectedIndex == -1 || // Check if a test is selected
-            string.IsNullOrWhiteSpace(ResultEntry.Text) ||
-            string.IsNullOrWhiteSpace(NormalRangeEntry.Text))
+        var currentDate = DateTime.Now;
+        var currentTime = DateTime.Now.TimeOfDay;
+
+        // Create a new LabResult object
+        var labResult = new LabResults()
         {
-            await DisplayAlert("Validation Error", "Please fill in all fields.", "OK");
+            PetName = PetNameEntry.Text, // Get the pet name from the Entry
+            OwnerName = OwnerNameEntry.Text, // Get the owner name from the Entry
+            Date = currentDate, // Set the current date
+            Time = currentTime.ToString(@"hh\:mm"), // Format the time
+            TestName = TestNamePicker.SelectedItem?.ToString(), // Get the selected test name
+            Result = ResultEntry.Text, // Get the result from the Entry
+            Range = RangeEntry.Text // Get the range from the Entry
+        };
+
+        // Validate input
+        if (string.IsNullOrWhiteSpace(labResult.PetName) ||
+            string.IsNullOrWhiteSpace(labResult.OwnerName) ||
+            string.IsNullOrWhiteSpace(labResult.TestName) ||
+            string.IsNullOrWhiteSpace(labResult.Result) ||
+            string.IsNullOrWhiteSpace(labResult.Range))
+        {
+            await DisplayAlert("Error", "Please fill in all fields.", "OK");
             return;
         }
 
-        // Here you would typically save the results to a database or perform some action
-        // For demonstration, we'll just show a success message
-        await DisplayAlert("Success", "Lab results submitted successfully!", "OK");
+        // Call the AddLabResultAsync method to save the lab result
+        bool isSuccess = await labResult.AddLabResultAsync();
 
-        // Optionally, clear the entries after submission
-        PetNameEntry.Text = string.Empty;
-        OwnerNameEntry.Text = string.Empty;
-        TestNamePicker.SelectedIndex = -1; // Reset the picker
-        ResultEntry.Text = string.Empty;
-        NormalRangeEntry.Text = string.Empty;
-        DatePicker.Date = DateTime.Now;
-        TimePicker.Time = TimeSpan.FromHours(12);
+        if (isSuccess)
+        {
+            // Show a confirmation message
+            await DisplayAlert("Success", "Lab results submitted successfully!", "OK");
+
+            // Clear the form fields
+            PetNameEntry.Text = string.Empty;
+            OwnerNameEntry.Text = string.Empty;
+            ResultEntry.Text = string.Empty;
+            RangeEntry.Text = string.Empty;
+            TestNamePicker.SelectedItem = null;
+        }
+        else
+        {
+            await DisplayAlert("Error", "Failed to submit results. Please try again.", "OK");
+        }
     }
 
-    private async void OnPetProfileClicked(object sender, EventArgs e)
+    private void OnPetProfileClicked(object sender, EventArgs e)
     {
         // Navigate to the pet profile page
-        await Navigation.PushAsync(new PageAdmin());
+        Navigation.PushAsync(new Views.PageLabResults()); // Ensure this is the correct page
     }
 
-    private async void OnAppointmentsClicked(object sender, EventArgs e)
+    private void OnAppointmentsClicked(object sender, EventArgs e)
     {
         // Navigate to the appointments page
-        await Navigation.PushAsync(new PageAdminViewAppointment());
+        Navigation.PushAsync(new PageAdminViewAppointment()); // Ensure this is the correct page
     }
 }
-
-
-

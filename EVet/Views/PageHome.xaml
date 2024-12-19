@@ -101,7 +101,7 @@
                 </Frame>
                 <ImageButton
                     Margin="290,-10,0,0"
-                    Clicked="ImageButton_Clicked"
+                    Clicked="Settings"
                     HeightRequest="30"
                     Source="setss.png"
                     WidthRequest="30" />

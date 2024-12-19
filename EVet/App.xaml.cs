@@ -14,7 +14,7 @@ namespace EVet
 
             //MainPage = new MainPage();
 
-            MainPage = new NavigationPage(new PageLabResults());
+            MainPage = new NavigationPage(new WelcomePage());
 
         }
     }

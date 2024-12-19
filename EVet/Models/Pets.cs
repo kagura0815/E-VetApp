@@ -56,7 +56,9 @@ namespace EVet.Models
         public List<Pets> PetList { get; set; } = new List<Pets>();
         public string Images { get; set; }
         public string PetId { get; set; }
-        public string ID { get; set; }
+        public string Allergies { get; set; }
+        public string Neutered { get; set; }
+        public string PetID { get; set; }
         public string Name { get; set; }
         public string Breed { get; set; }
         //public string Birthday { get; set; }
@@ -64,8 +66,8 @@ namespace EVet.Models
         public string PetType { get; set; } // e.g., "Dog", "Cat"
         public string ImageSource { get; set; }
         public string Service { get; set; } // e.g., "Grooming", "Checkup"
-    
-    public string Weight { get; set; }
+        public string Birthday { get; set; }
+        public string Weight { get; set; }
     
 
         public async Task<bool> AddPet(
@@ -73,7 +75,9 @@ namespace EVet.Models
             string name,
             string type,
             string breed,
-            //string birthday,
+            string birthday,
+            string allergies,
+            string neutered,
             string gender,
             string weight,
             FileResult mainimg,
@@ -88,11 +92,13 @@ namespace EVet.Models
                 var idd = GlobalVariables.IDD; // Assuming IDD is a global variable for user ID
                 var pets = new Pets()
                 {
-                    ID = idd,
+                    PetID = idd,
                     Name = name,
                     Breed = breed,
                     PetType = type,
-                    //Birthday = birthday,
+                    Birthday = birthday,
+                    Allergies = allergies,
+                    Neutered = neutered,
                     Gender = gender,
                     Weight = weight,
                     Images = _mainimg
@@ -120,18 +126,21 @@ namespace EVet.Models
             PetList.Add(pet);
         }
 
-        public class pets
+
+        private async Task<List<Pets>> FetchPets(string userId)
         {
-            public string ID { get; set; }
-            public string Name { get; set; }
-                public string Breed { get; set; }
+            var pets = await client
+                .Child($"Users/{IDD}/Pets")
+                .OnceAsync<Pets>();
 
-            public string Weight { get; set; }
-            public string Gender { get; set; }
+            return pets.Select(p => new Pets
+            {
+                PetId = p.Key,
+                Name = p.Object.Name
+            }).ToList();
         }
+
         
-
-
         public async Task<bool> Addimage(FileResult mainimg, string flename)
         {
             try
@@ -185,7 +194,7 @@ namespace EVet.Models
             {
                 var evaluateCode = (await client.Child("PetInfo")
                 .OnceAsync<Pets>()).FirstOrDefault(a =>
-                a.Object.ID == _id);
+                a.Object.PetID == _id);
                 if (evaluateCode == null)
                 {
                     return true;
@@ -203,11 +212,11 @@ namespace EVet.Models
         public async Task<List<Pets>> GetPetsAsync(string userId)
         {
             return (await client
-                .Child($"Users/{userId}/Pets")
+                .Child($"Users/{IDD}/Pets")
                 .OnceAsync<Pets>())
                 .Select(item => new Pets
                 {
-                    ID = item.Object.ID,
+                    PetID = item.Object.PetID,
                     Name = item.Object.Name,
                     Breed = item.Object.Breed,
                     Gender = item.Object.Gender,
@@ -219,12 +228,12 @@ namespace EVet.Models
         {
             var evaluateCode = (await client.Child("Pets")
                 .OnceAsync<Pets>()).FirstOrDefault
-                (a => a.Object.ID == _id);
+                (a => a.Object.PetID == _id);
             if (evaluateCode != null)
             {
 
                 petkey = evaluateCode.Key;
-                id = evaluateCode.Object.ID;
+                id = evaluateCode.Object.PetID;
                 name = evaluateCode.Object.Name;
                 breed = evaluateCode.Object.Breed;
                
@@ -246,7 +255,7 @@ namespace EVet.Models
                 var getpetkey = (await client
                     .Child("Pets")
                     .OnceAsync<Pets>()).FirstOrDefault
-                    (a => a.Object.ID == id);
+                    (a => a.Object.PetID == id);
                 if (getpetkey != null)
                 {
                     await client

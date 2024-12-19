@@ -14,9 +14,10 @@ public partial class PageHome : ContentPage
       
     }
 
-    private async void ImageButton_Clicked(object sender, EventArgs e)
+    private async void Settings(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new PageSettings());
+
         //await Navigation.PopAsync();
 
     }

@@ -6,47 +6,60 @@ using Microsoft.Maui.Controls;
 using EVet.Pages;
 using CommunityToolkit.Maui.Views;
 using System.Diagnostics;
+using System.Xml;
 namespace EVet.Views;
 
 public partial class PetProfile : ContentPage
 {
-   
-   
-	public PetProfile(Pets pets)
+    private Pets _selectedPet;
+
+
+    public PetProfile(Pets selectedPet)
 	{
        
         InitializeComponent();
+        _selectedPet = selectedPet;
         //_pets = pet;
         //BindPetData();
-        BindingContext = pets;
+        BindingContext = selectedPet;
     }
-    //private void BindPetData()
-    //{
-    //    if (_pets == null)
-    //    {
-    //        Debug.WriteLine("Pets object is null.");
-    //        return;
-    //    }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        DisplayPetDetails();
+    }
+    private Pets GetSelectedPet()
+    {
 
-    //    // Assuming you have labels or other UI elements to display pet data
-    //    petNameLabel.Text = _pets.Name; // Replace with actual property names
-    //    petBreedLabel.Text = _pets.Breed;
-    //    petGenderLabel.Text = _pets.Gender;
-    //    petWeightLabel.Text = _pets.Weight;
-    //    petImage.Source = _pets.ImageSource; // Assuming you have a property for the image source
-    //}
-   
-    
-
-    //protected override async void OnAppearing()
-    //    {
-    //        base.OnAppearing();
-    //        //await FillList();
-    //    }
-    //    //private async Task FillList()
-    //    //{
-    //    //    ListsPets.ItemsSource = await _petslist.GetPet();
-    //    //}
+        // Logic to retrieve the selected pet
+        // This is just a placeholder; implement your logic here
+        return new Pets
+        {
+            Name = name,
+            ImageSource = images,
+            PetType = petType,
+            Gender = gender,
+            Weight = weight,
+            Breed = breed
+        };
+    }
+    private void DisplayPetDetails()
+    {
+        if (_selectedPet != null)
+        {
+            // Assuming you have labels or other UI elements to display the pet's details
+            name = _selectedPet.Name;
+           petType = _selectedPet.PetType;
+            breed = _selectedPet.Breed;
+           gender = _selectedPet.Gender;
+           weight = _selectedPet.Weight;
+            birthday = _selectedPet.Birthday;
+            neutered = _selectedPet.Neutered;
+            allergies   = _selectedPet.Allergies;
+            // Assuming you have an Image control to display the pet's image
+            images = _selectedPet.Images; // Set the image source
+        }
+    }
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
         await Navigation.PushAsync(new SelectPet());
@@ -67,7 +80,18 @@ public partial class PetProfile : ContentPage
 
     private async void OnPetProfileClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new PageLabResults());
+        Pets selectedPet = GetSelectedPet(); // Get the currently selected pet
+
+        if (selectedPet != null) // Check if a pet is selected
+        {
+            // Navigate to the PetProfile page and pass the selected pet
+            await Navigation.PushAsync(new PetProfile(selectedPet));
+        }
+        else
+        {
+            // Handle the case where no pet is selected
+            await DisplayAlert("Error", "No pet selected.", "OK");
+        }
     }
 
     private async void selectPet(object sender, EventArgs e)
