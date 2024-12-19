@@ -5,36 +5,66 @@ using Microsoft.Maui.Controls;
 using Firebase.Database.Query;
 using Firebase.Database;
 using EVet.Includes;
+using System.ComponentModel;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using System.Threading;
 
-public partial class PageLogin : ContentPage
+public partial class PageLogin : INotifyPropertyChanged
 {
+    CancellationTokenSource cancellationTokenSource = new();
     Users _login = new();
     public PageLogin()
 	{
-		InitializeComponent();
-	}
+        Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+        InitializeComponent();
+       
+    }
 
-   
+ 
+
+
+    private async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+    {
+        if (e.NetworkAccess != NetworkAccess.Internet)
+        {
+            nointernet.IsVisible = true;
+            var toast = Toast.Make("You may have no internet connection!", ToastDuration.Long, 12);
+            await toast.Show(cancellationTokenSource.Token);
+        }
+        else
+        {
+            nointernet.IsVisible = false;
+            var toast = Toast.Make("Internet connection Restored!", ToastDuration.Long, 12);
+            await toast.Show(cancellationTokenSource.Token);
+        }
+    }
+    
     private async void btnadd_Clicked(object sender, EventArgs e)
     {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            progressLoading.IsVisible = false;
+            return;
+        }
+
+
         Console.WriteLine($"Username: {txtuname.Text}, Password: {txtpword.Text}");
 
         if (string.IsNullOrEmpty(txtuname.Text))
         {
             await DisplayAlert("Data validation", "Please Enter User Name!", "Got it");
+            progressLoading.IsVisible = false;
             return;
         }
         if (string.IsNullOrEmpty(txtpword.Text))
         {
             await DisplayAlert("Data Validation", "Please enter the Password", "Got It");
+            progressLoading.IsVisible = false;
             return;
         }
-        var current = Connectivity.Current;
-        if (current.NetworkAccess != NetworkAccess.Internet)
-        {
-            await DisplayAlert("Connection Error", "No internet connection. Please check your network settings.", "Okay");
-            return;
-        }
+      
         try
         {
 
@@ -44,6 +74,7 @@ public partial class PageLogin : ContentPage
             if (!a)
             {
                 await DisplayAlert("", "You Have Entered a Wrong Password", "Okay");
+                progressLoading.IsVisible = false;
                 return;
 
             }
@@ -61,13 +92,15 @@ public partial class PageLogin : ContentPage
                     await DisplayAlert("Error", "User  not found 2", "Okay");
                     return;
                 }
-             
-              
-                    string userFullName = $"{user.FirstName} {user.LastName}";
+            progressLoading.IsVisible = true;
+
+            string userFullName = $"{user.FirstName} {user.LastName}";
                 GlobalVariables.IDD = iD;
                 GlobalVariables.Fullname = userFullName;
                     await DisplayAlert("You Have Successfully Logged In", userFullName , "Okay");
+            progressLoading.IsVisible = true;
             await Navigation.PushAsync(new PageHome());
+            progressLoading.IsVisible = false;
             //Application.Current.MainPage = new PageHome();
 
 
@@ -92,30 +125,28 @@ public partial class PageLogin : ContentPage
         txtpword.IsPassword = !showPasswordCheckBox.IsChecked;
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void Button_Clicked(object sender, EventArgs e)
     {
-        Application.Current!.MainPage = new PageRegister();
+        progressLoading.IsVisible = true;
+        await Navigation.PushAsync(new PageRegister());
+        progressLoading.IsVisible = false;
     }
 
-    private void Button_Clicked_1(object sender, EventArgs e)
+    private async void Button_Clicked_1(object sender, EventArgs e)
     {
-        Application.Current!.MainPage = new PageFront();
+        await Navigation.PushAsync(new PageFront());
     }
 
-    private async Task<string> GetUserByFirstNameAndLastName(string Username)
+    private async Task<string> GetUserByFirstNameAndLastName(string user)
     {
         var users = await client.Child("Users").OnceAsync<Users>();
 
-        var userWithKey = users.FirstOrDefault(u => u.Object.User.Equals(Username, StringComparison.OrdinalIgnoreCase));
+        var userWithKey = users.FirstOrDefault(u => u.Object.User.Equals(user, StringComparison.OrdinalIgnoreCase));
 
         return userWithKey?.Key;
     }
 
    
-        private async void OnBackButtonClicked(object sender, EventArgs e)
-        {
-        // Navigate back to the previous page
-        Application.Current!.MainPage = new PageFront();
-    }
-
-    }
+       
+    
+}

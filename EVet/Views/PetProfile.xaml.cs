@@ -65,7 +65,13 @@ public partial class PetProfile : ContentPage
         await Navigation.PushAsync(new BookAppointment());
     }
 
-   
+    private async void OnPetProfileClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new PageLabResults());
+    }
 
-   
+    private async void selectPet(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new SelectPet());
+    }
 }

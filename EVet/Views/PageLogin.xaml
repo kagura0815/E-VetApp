@@ -4,12 +4,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
-    Title="">
+    Title=""
+    BackgroundColor="#212025">
     <VerticalStackLayout>
 
         <VerticalStackLayout>
             <Image
-                Margin="10,-40,10,10"
+                Margin="10,-80,10,10"
                 HeightRequest="300"
                 Source="logo.png"
                 WidthRequest="300" />
@@ -23,7 +24,67 @@
                 FontSize="12"
                 Text=" ANIMAL CLINIC SERVICES"
                 VerticalOptions="Center" />
-
+            <StackLayout
+                x:Name="progressLoading"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Transparent"
+                IsVisible="False"
+                VerticalOptions="CenterAndExpand">
+                <ActivityIndicator
+                    x:Name="ai"
+                    Margin="0,0,0,0"
+                    HorizontalOptions="CenterAndExpand"
+                    IsRunning="True"
+                    IsVisible="True"
+                    Color="{StaticResource ButtonColor}" />
+                <Label
+                    x:Name="lblorderstate"
+                    Margin="20"
+                    FontFamily="facompa"
+                    FontSize="20"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="We're processing your request, please wait..."
+                    TextColor="White" />
+            </StackLayout>
+            <Grid
+                x:Name="nointernet"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Transparent"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="false"
+                VerticalOptions="FillAndExpand">
+                <Grid
+                    RowDefinitions="Auto, Auto, Auto"
+                    RowSpacing="5"
+                    VerticalOptions="CenterAndExpand">
+                    <Label
+                        Grid.Row="1"
+                        Margin="0,30,0,0"
+                        FontSize="Small"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="Something went wrong. Please check your internet connection."
+                        TextColor="{StaticResource TextColorGray}"
+                        VerticalOptions="Center" />
+                    <ActivityIndicator
+                        x:Name="Net"
+                        Grid.Row="0"
+                        HorizontalOptions="CenterAndExpand"
+                        IsRunning="True"
+                        IsVisible="True"
+                        Color="{StaticResource ButtonColor}" />
+                    <Button
+                        x:Name="btntryagain"
+                        Grid.Row="2"
+                        Margin="40,0"
+                        BackgroundColor="{StaticResource ButtonColor}"
+                        CornerRadius="30"
+                        Text="Try again"
+                        TextColor="White" />
+                </Grid>
+            </Grid>
             <ur:TextField
                 x:Name="txtuname"
                 Title="Enter Username"
@@ -86,6 +147,7 @@
                 FontSize="15"
                 Text="CREATE AN ACCOUNT"
                 TextColor="White" />
+
         </VerticalStackLayout>
 
     </VerticalStackLayout>

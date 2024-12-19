@@ -55,6 +55,7 @@ namespace EVet.Models
         }
         public List<Pets> PetList { get; set; } = new List<Pets>();
         public string Images { get; set; }
+        public string PetId { get; set; }
         public string ID { get; set; }
         public string Name { get; set; }
         public string Breed { get; set; }
@@ -65,6 +66,8 @@ namespace EVet.Models
         public string Service { get; set; } // e.g., "Grooming", "Checkup"
     
     public string Weight { get; set; }
+    
+
         public async Task<bool> AddPet(
             string id,
             string name,
@@ -126,6 +129,7 @@ namespace EVet.Models
             public string Weight { get; set; }
             public string Gender { get; set; }
         }
+        
 
 
         public async Task<bool> Addimage(FileResult mainimg, string flename)

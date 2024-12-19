@@ -102,7 +102,7 @@
                 Breed = SelectedPet.Breed,
                 Gender = selectedgen,
                 Weight = weightWithUnit,
-                ImageSource = _mainimgResult.FullPath // Assuming you have a way to get the image source
+                Images = _mainimgResult.FullPath // Assuming you have a way to get the image source
             };
 
 
@@ -126,7 +126,7 @@
 
             // Navigate to PetProfile with the new pet
             await Navigation.PushAsync(new PetProfile(newPet)); // Pass the Pet object
-
+            progressLoading.IsVisible = false;
             // Clear the form
             txtname.Text = string.Empty;
             txtgender.SelectedItem = null;

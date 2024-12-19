@@ -27,12 +27,16 @@
                 BackgroundColor="Transparent"
                 HeightRequest="60"
                 WidthRequest="500">
-                <Label
-                    Margin="145,-6,0,0"
+                <Button
+                    Margin="-195,-6,0,0"
+                    BackgroundColor="Transparent"
+                    Clicked="selectPet"
                     FontSize="18"
-                    Text="Select a Pet" />
+                    Text="Select a Pet"
+                    TextColor="White"
+                    TextTransform="Uppercase" />
             </Frame>
-            <Frame
+            <!--<Frame
                 Margin="-250,-50,0,15"
                 BackgroundColor="White"
                 CornerRadius="10"
@@ -48,7 +52,7 @@
                     HeightRequest="40"
                     Source="addphoto.png"
                     WidthRequest="40" />
-            </Frame>
+            </Frame>-->
 
 
 
@@ -82,7 +86,10 @@
                                     VerticalOptions="Center"
                                     WidthRequest="100">
 
-                                    <Image Aspect="AspectFill" Source="{Binding Images}" />
+                                    <Image
+                                        x:Name="petImage"
+                                        Aspect="AspectFill"
+                                        Source="{Binding Images}" />
 
 
                                 </Border>
@@ -101,6 +108,7 @@
                                         TextColor="black"
                                         VerticalOptions="CenterAndExpand" />
                                     <Label
+                                        x:Name="petNameLabel"
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         FontAttributes="Bold"
@@ -120,6 +128,7 @@
                                         TextColor="black"
                                         VerticalOptions="CenterAndExpand" />
                                     <Label
+                                        x:Name="petGenderLabel"
                                         Grid.Row="2"
                                         Grid.Column="1"
                                         FontAttributes="Bold"
@@ -136,6 +145,7 @@
                                         TextColor="black"
                                         VerticalOptions="CenterAndExpand" />
                                     <Label
+                                        x:Name="petTypeLabel"
                                         Grid.Row="3"
                                         Grid.Column="1"
                                         FontAttributes="Bold"
@@ -152,6 +162,7 @@
                                         TextColor="black"
                                         VerticalOptions="CenterAndExpand" />
                                     <Label
+                                        x:Name="petBreedLabel"
                                         Grid.Row="4"
                                         Grid.Column="1"
                                         FontAttributes="Bold"
@@ -168,6 +179,7 @@
                                         TextColor="black"
                                         VerticalOptions="CenterAndExpand" />
                                     <Label
+                                        x:Name="petWeightLabel"
                                         Grid.Row="5"
                                         Grid.Column="1"
                                         FontAttributes="Bold"

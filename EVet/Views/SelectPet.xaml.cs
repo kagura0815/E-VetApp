@@ -1,10 +1,15 @@
 using EVet.Models;
 using System.Collections.ObjectModel;
+using static EVet.Views.PetProfile;
 
 namespace EVet.Views;
 
 public partial class SelectPet : ContentPage
 {
+    public static class SelectedPetHolder
+    {
+        public static Pets SelectedPet { get; set; }
+    }
     Pets _petlist = new Pets();
     public ObservableCollection<Pets> PetsList { get; set; }
     public SelectPet()
@@ -42,13 +47,17 @@ public partial class SelectPet : ContentPage
     {
         if (e.CurrentSelection.Count > 0)
         {
-            // Assuming Pets is a collection and you need to get a single Pet from it
-            var selectedPet = e.CurrentSelection[0] as Pets; // Change to Pet if you have a single pet model
+            var selectedPet = e.CurrentSelection[0] as Pets; // Assuming Pets is your model
             if (selectedPet != null)
             {
-                await Navigation.PushAsync(new PetProfile(selectedPet)); // Pass the Pet object
+                // Store the selected pet in the static holder
+                SelectedPetHolder.SelectedPet = selectedPet;
+
+                // Navigate to the PetProfile page
+                await Navigation.PushAsync(new PetProfile(selectedPet));
             }
         }
+
 
     }
 

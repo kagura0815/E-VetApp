@@ -1,4 +1,5 @@
 ﻿using EVet.Models;
+using EVet.Pages;
 using EVet.Views;
 namespace EVet
 {
@@ -11,9 +12,9 @@ namespace EVet
             InitializeComponent();
 
 
-            //MainPage = new PageHome();
+            //MainPage = new MainPage();
 
-            MainPage = new NavigationPage(new PageFront());
+            MainPage = new NavigationPage(new PageLabResults());
 
         }
     }

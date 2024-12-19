@@ -8,18 +8,18 @@ public partial class PageFront : ContentPage
 	}
     private async void btnadd_Clicked(object sender, EventArgs e)
     {
-        if (Application.Current != null)
-        {
+       
+            progressLoading.IsVisible = true;
             await Navigation.PushAsync(new PageLogin());
-        }
+        progressLoading.IsVisible = false;
     }
 
     private async void btnadd_Clicked1(object sender, EventArgs e)
     {
-        if (Application.Current != null)
-        {
-            await Navigation.PushAsync(new PageLoginAdmin());
-        }
+        progressLoading.IsVisible = true;
+
+        await Navigation.PushAsync(new PageLoginAdmin());
+        progressLoading.IsVisible = false;
     }
    
 }

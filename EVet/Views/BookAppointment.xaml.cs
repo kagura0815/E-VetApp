@@ -56,7 +56,7 @@ public partial class BookAppointment : ContentPage
        
         if (selectedDateTime < DateTime.Now)
         {
-            await DisplayAlert("Error", "The selected date and time have already passed. Please choose a future date and time.", "OK");
+            await DisplayAlert("Error", "The selected date have already passed. Please choose a future date .", "OK");
             return; // Exit the method if the time is in the past
         }
         if (IsTimeBooked(selectedDate, selectedTime))
@@ -157,7 +157,7 @@ public partial class BookAppointment : ContentPage
                    .Where(appointment => appointment.Date == selectedDate.Date)
                    .Select(appointment => appointment.TimeOfDay)
                    .ToList();
-            string unavailableMessage = "Unavailable times: " + string.Join(", ", unavailableTimes);
+            string unavailableMessage = "Unavailable times: " + string.Join("12am-7am,  ", unavailableTimes);
             // You can use a Label to show this message in your UI
             UnavailableTimesLabel.Text = unavailableMessage; // Assuming you have a Label named UnavailableTimesLabel
                                                              // Clear the TimePicker's selected time if it's already booked
