@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="EVet.Views.BookAppointment"
+    x:Class="EVet.Views.EditAppointment"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="    Book Appointment">
+    xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    Title="EditAppointment">
     <Frame
         Margin="20"
         Padding="10"
@@ -26,8 +27,7 @@
                     <Picker
                         x:Name="ptype"
                         Title="Pet Type"
-                        Margin="0,10,0,0"
-                        SelectedIndexChanged="OnPetTypeChanged">
+                        Margin="0,10,0,0">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>Dog</x:String>
@@ -113,14 +113,12 @@
                     </Picker>
 
                     <Label Margin="0,10,0,0" Text="Appointment Date" />
-                    <DatePicker
-                        x:Name="AppointmentDatePicker"
-                        Margin="0,10,0,0"
-                        DateSelected="OnDateSelected" />
+                    <DatePicker x:Name="AppointmentDatePicker" Margin="0,10,0,0" />
                     <Label Margin="0,10,0,0" Text="Appointment Time" />
                     <TimePicker x:Name="AppointmentTimePicker" Margin="0,10,0,0" />
                     <Label FontAttributes="Bold" Text="Status:" />
                     <Label x:Name="StatusLabel" FontSize="16" />
+
                     <Label
                         x:Name="UnavailableTimesLabel"
                         FontSize="16"
@@ -131,8 +129,9 @@
                         Clicked="OnBookAppointmentClicked"
                         FontAttributes="Bold"
                         FontFamily="serif"
-                        Text="BOOK APPOINTMENT"
-                        TextColor="{StaticResource White}">
+                        Text="Confirm"
+                        TextColor="{StaticResource White}"
+                        TextTransform="Uppercase">
                         <Button.Background>
                             <LinearGradientBrush EndPoint="1,0">
                                 <GradientStop Offset="0" Color="#9BEC00" />
@@ -147,7 +146,13 @@
                                 Offset="0,15" />
                         </Button.Shadow>
                     </Button>
-
+                    <Button
+                        Margin="5"
+                        BackgroundColor="#F44336"
+                        Clicked="OnCancelClicked"
+                        Text="Cancel"
+                        TextColor="White"
+                        TextTransform="Uppercase" />
                     <ProgressBar
                         x:Name="BookingProgressBar"
                         Margin="0,105,0,0"
@@ -156,4 +161,5 @@
             </VerticalStackLayout>
         </ScrollView>
     </Frame>
+
 </ContentPage>

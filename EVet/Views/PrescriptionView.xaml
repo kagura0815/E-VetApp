@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EVet.Views.PrescriptionView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="PrescriptionView">
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="What to Do If Your Pet Has Minor Symptoms"
+                TextColor="#059212" />
+
+            <StackLayout Margin="0,20,0,0">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="1. Sneezing"
+                    TextColor="Black" />
+                <Label Text="• Check for allergens in the environment." />
+                <Label Text="• Ensure your pet is not exposed to smoke or strong odors." />
+                <Label Text="• If symptoms persist, consult your veterinarian." />
+            </StackLayout>
+
+            <StackLayout Margin="0,20,0,0">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="2. Mild Coughing"
+                    TextColor="Black" />
+                <Label Text="• Monitor your pet's behavior." />
+                <Label Text="• Ensure they are hydrated." />
+                <Label Text="• If coughing continues for more than a day, contact your vet." />
+            </StackLayout>
+
+            <StackLayout Margin="0,20,0,0">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="3. Lethargy"
+                    TextColor="Black" />
+                <Label Text="• Check for any changes in diet or routine." />
+                <Label Text="• Ensure your pet is comfortable and has a quiet space." />
+                <Label Text="• If lethargy lasts more than 24 hours, consult a veterinarian." />
+            </StackLayout>
+
+            <StackLayout Margin="0,20,0,0">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="4. Mild Vomiting"
+                    TextColor="Black" />
+                <Label Text="• Withhold food for 12 hours, then reintroduce a bland diet." />
+                <Label Text="• Ensure your pet stays hydrated." />
+                <Label Text="• If vomiting persists, seek veterinary advice." />
+            </StackLayout>
+
+            <StackLayout Margin="0,20,0,0">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="5. Diarrhea"
+                    TextColor="Black" />
+                <Label Text="• Monitor for dehydration." />
+                <Label Text="• Withhold food for 12 hours, then reintroduce a bland diet." />
+                <Label Text="• If diarrhea continues for more than a day, consult your vet." />
+            </StackLayout>
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

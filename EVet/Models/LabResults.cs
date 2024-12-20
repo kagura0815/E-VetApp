@@ -23,14 +23,25 @@ namespace EVet.Models
         public string Range { get; set; }
 
         // Method to add a lab result to the database
-        public async Task<bool> AddLabResultAsync()
+        public async Task<bool> AddLabResultAsync( string pName,string oName,string testres,string testtype)
         {
-            var rid = GlobalVariables.PETID;
+           
+
             try
             {
+                var rid = GlobalVariables.PETID;
+                var currentTime = DateTime.Now;
+                var labResults = new LabResults();
+                {
+                    Id = rid;
+                    PetName = pName;
+                    OwnerName = oName;
+                    Date = DateTime.Now;
+                    Time = currentTime.ToString();
+                    TestName = testtype;
+                    Result = testres;
 
-                Id = Guid.NewGuid().ToString();
-
+                }
                 // Assuming you have a Firebase client or database context set up
 
 
@@ -38,7 +49,7 @@ namespace EVet.Models
                 await client
                     .Child($"Users/{IDD}/Pets/{PETID}/LabResults")
                     .Child(Id) // Use the unique ID as the key
-                    .PutAsync(this); // 'this' refers to the current instance of LabResult
+                    .PostAsync(labResults); // 'this' refers to the current instance of LabResult
 
                 return true; // Indicate success
             }
@@ -47,6 +58,93 @@ namespace EVet.Models
                 // Handle exceptions (e.g., log the error)
                 Console.WriteLine($"Error adding lab result: {ex.Message}");
                 return false; // Indicate failure
+            }
+        }
+        public async Task<List<LabResults>> GetLabResults()
+        {
+            var currentTime = DateTime.Now;
+            return (await client
+                .Child($"LabResults")
+                .OnceAsync<LabResults>()).Select(item => new LabResults
+                {
+
+                    PetName = item.Object.PetName,
+                    OwnerName = item.Object.OwnerName,
+                    Date = DateTime.Now,
+                    Time = currentTime.ToString(),
+                     Id = item.Object.Id,
+                         Range = item.Object.Range,
+                          Result = item.Object.Result,
+                           TestName = item.Object.TestName
+                    
+                   
+
+
+
+
+                }).ToList();
+        }
+        public async Task<List<LabResults>> GetAllLabResults()
+        {
+            var appointment = await client
+               .Child("LabResults")
+               .OnceAsync<LabResults>();
+
+            return appointment
+               .Select(item => new LabResults
+               {
+                   PetName = item.Object.PetName,
+                   OwnerName = item.Object.OwnerName,
+                   Date = DateTime.Now,
+                   Id = item.Object.Id,
+                   Range = item.Object.Range,
+                   Result = item.Object.Result,
+                   TestName = item.Object.TestName
+
+
+               })
+               .ToList();
+        }
+        public async Task<List<LabResults>> FindAppointment(string fname)
+        {
+            var queryVisitor = await GetAllLabResults();
+            await client
+                .Child("LabResults")
+                .OnceAsync<LabResults>();
+            var searchTerms = fname.Split(' ');
+            return queryVisitor.Where(a => searchTerms.Any(term => a.PetName.ToLower().Contains(term.ToLower())
+            || a.OwnerName.ToLower().Contains(term.ToLower())
+         
+            
+            || a.TestName.ToLower().Contains(term.ToLower())))
+                .ToList();
+
+        }
+        public async Task<bool> DeleteAppointment(string id)
+        {
+            try
+            {
+                var getstudentkey = (await client
+                    .Child("LabResults")
+                    .OnceAsync<LabResults>()).FirstOrDefault
+                    (a => a.Object.Id == id);
+                if (getstudentkey != null)
+                {
+                    await client
+                        .Child("LabResults")
+                    .Child(getstudentkey.Key)
+                        .DeleteAsync();
+                    client.Dispose();
+                    return true;
+                }
+
+                client.Dispose();
+                return false;
+            }
+            catch
+            {
+                client.Dispose();
+                return false;
             }
         }
     }

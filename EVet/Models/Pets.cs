@@ -19,22 +19,22 @@ using EVet.Includes;
 using Firebase.Database;
 namespace EVet.Models
 {
-   
+
 
     public class Pets
     {
-       
-            //public async Task<List<Pet>> GetPet()
-            //{
-            //    // Simulate data retrieval
-            //    return await Task.FromResult(new List<Pet>
-            //{
-            //    new Pet { Name = "Buddy", ImageSource = "buddy.png", Gender = "Male", Weight = "30 lbs", Breed = "Golden Retriever" },
-            //    new Pet { Name = "Mittens", ImageSource = "mittens.png", Gender = "Female", Weight = "10 lbs", Breed = "Siamese" }
-            //    // Add more pets as needed
-            //});
-            //}
-        public async Task<List<Pets>> GetPets()
+
+        //public async Task<List<Pet>> GetPet()
+        //{
+        //    // Simulate data retrieval
+        //    return await Task.FromResult(new List<Pet>
+        //{
+        //    new Pet { Name = "Buddy", ImageSource = "buddy.png", Gender = "Male", Weight = "30 lbs", Breed = "Golden Retriever" },
+        //    new Pet { Name = "Mittens", ImageSource = "mittens.png", Gender = "Female", Weight = "10 lbs", Breed = "Siamese" }
+        //    // Add more pets as needed
+        //});
+        //}
+        public async Task<List<Pets>> GetPets(string userId)
         {
 
             return (await client
@@ -48,7 +48,9 @@ namespace EVet.Models
                     Gender = item.Object.Gender,
                     Images = item.Object.Images,
                     Weight = item.Object.Weight,
-
+                    Birthday = item.Object.Birthday,
+                    Allergies = item.Object.Allergies,
+                    Neutered   = item.Object.Neutered
 
 
                 }).ToList();
@@ -68,7 +70,7 @@ namespace EVet.Models
         public string Service { get; set; } // e.g., "Grooming", "Checkup"
         public string Birthday { get; set; }
         public string Weight { get; set; }
-    
+
 
         public async Task<bool> AddPet(
             string id,
@@ -103,7 +105,7 @@ namespace EVet.Models
                     Weight = weight,
                     Images = _mainimg
                 };
-              
+
 
                 // Attempt to post the pet data to the database
                 await client.Child($"Users/{IDD}/Pets").PostAsync(pets);
@@ -126,7 +128,7 @@ namespace EVet.Models
             PetList.Add(pet);
         }
 
-
+      
         private async Task<List<Pets>> FetchPets(string userId)
         {
             var pets = await client

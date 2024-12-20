@@ -98,4 +98,14 @@ public partial class PetProfile : ContentPage
     {
         await Navigation.PushAsync(new SelectPet());
     }
+
+    private async void LabResultsView(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ViewLabResults());
+    }
+
+    private async void PrescriptionView(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new PrescriptionView());
+    }
 }

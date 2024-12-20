@@ -6,6 +6,10 @@ namespace EVet.Views;
 
 public partial class PageAdminViewAppointment : ContentPage
 {
+    public static class SelectedApptHolder
+    {
+        public static Appointment SelectedAppt { get; set; }
+    }
     Appointment _apptlist = new Appointment();
     public PageAdminViewAppointment()
 	{
@@ -28,7 +32,7 @@ public partial class PageAdminViewAppointment : ContentPage
         {
             apptkey = await _apptlist.GetAppointmentKey(details.BId);
             await DisplayAlert("Test", apptkey, "OK");
-            await Navigation.PushAsync(page: new PageAppointmentNotification());
+            await Navigation.PushAsync(page: new EditAppointment());
 
         }
     }
@@ -66,4 +70,23 @@ public partial class PageAdminViewAppointment : ContentPage
     {
         ListAppointments.ItemsSource = await _apptlist.GetAllAppointments();
     }
+
+    //private async void ListAppointments_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    //{
+    //    if (e.CurrentSelection.Count > 0)
+    //    {
+    //        var selectedAppt = e.CurrentSelection[0] as Appointment; // Assuming Pets is your model
+    //        if (selectedAppt != null)
+    //        {
+    //            // Store the selected pet in the static holder
+    //            SelectedApptHolder.SelectedAppt = selectedAppt;
+
+    //            // Navigate to the PetProfile page
+    //            await Navigation.PushAsync(new PageAppointmentNotification(PetNameEntry.Text,
+    //       OwnerNameEntry.Text,
+    //       AppointmentDatePicker.Date,
+    //       AppointmentTimePicker.Time));
+    //        }
+    //    }
+    //}
 }

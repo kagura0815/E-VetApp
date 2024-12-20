@@ -84,8 +84,8 @@
             <Border
                 Grid.Row="0"
                 Grid.Column="0"
-                Margin="0,-6,0,0"
-                HeightRequest="250"
+                Margin="0,-2,0,0"
+                HeightRequest="200"
                 StrokeShape="RoundRectangle 10"
                 VerticalOptions="Center"
                 WidthRequest="370">
@@ -99,13 +99,33 @@
 
 
             </Border>
+            <Frame
+                Grid.Row="2"
+                Margin="-170,0,0,0"
+                WidthRequest="165">
+                <Button
+                    BackgroundColor="Transparent"
+                    Clicked="LabResultsView"
+                    Text="Lab Results"
+                    TextColor="White" />
+            </Frame>
+            <Frame
+                Grid.Row="2"
+                Margin="170,-102,0,0"
+                WidthRequest="170">
+                <Button
+                    BackgroundColor="Transparent"
+                    Clicked="PrescriptionView"
+                    Text="Prescription"
+                    TextColor="White" />
+            </Frame>
             <ScrollView
                 Grid.Row="1"
-                Margin="0,80,0,0"
+                Margin="20,20,0,0"
                 HeightRequest="300"
                 WidthRequest="360">
                 <Grid
-                    BackgroundColor="blue"
+                    BackgroundColor="Transparent"
                     ColumnDefinitions="Auto,Auto"
                     RowDefinitions=" Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
                     RowSpacing="5">

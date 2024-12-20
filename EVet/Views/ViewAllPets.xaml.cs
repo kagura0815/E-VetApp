@@ -1,3 +1,4 @@
+using EVet.Includes;
 using EVet.Models;
 using System.Collections.ObjectModel;
 namespace EVet.Views;
@@ -8,9 +9,10 @@ public partial class ViewAllPets : ContentPage
     {
         public static Pets SelectedPet { get; set; }
     }
+    string userId = GlobalVariables.IDD;
     Pets _petlist = new Pets();
     public ObservableCollection<Pets> PetsList { get; set; }
-    public ViewAllPets()
+    public ViewAllPets(string userId)
     {
         InitializeComponent();
         PetsList = new ObservableCollection<Pets>();
@@ -33,9 +35,9 @@ public partial class ViewAllPets : ContentPage
         await FillList();
     }
     private async Task FillList()
-    {
-        var pets = await _petlist.GetPets();
-        PetsList.Clear(); // Clear existing items
+    { string userId = GlobalVariables.IDD;
+        var pets = await _petlist.GetPets(userId);
+        PetsList.Clear(); // Clear existing item3
         foreach (var pet in pets)
         {
             PetsList.Add(pet); // Add each pet to the ObservableCollection

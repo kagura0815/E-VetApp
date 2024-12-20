@@ -21,6 +21,7 @@ public partial class BookAppointment : ContentPage
 		InitializeComponent();
         AppointmentDatePicker.MinimumDate = DateTime.Today; // Prevent past dates
         InitializePickers();
+
     }
     private void InitializePickers()
     {
@@ -67,16 +68,12 @@ public partial class BookAppointment : ContentPage
 
       
         var appointment = new Appointment();
-        bool result = await appointment.AddAppointments(bid, PetNameEntry.Text, OwnerNameEntry.Text, SelectedPet.Type, SelectedPet.Breed, SelectedPet.Service, selectedDate, AppointmentTimePicker.Time);
+        bool result = await appointment.AddAppointments(bid, PetNameEntry.Text, OwnerNameEntry.Text, SelectedPet.Type, SelectedPet.Breed,StatusLabel.Text, SelectedPet.Service, selectedDate, AppointmentTimePicker.Time);
 
         if (result)
         {
             await DisplayAlert("Success", "Your appointment has been booked!", "OK");
-            await Navigation.PushAsync(new PageAppointmentNotification(
-           PetNameEntry.Text,
-           OwnerNameEntry.Text,
-           AppointmentDatePicker.Date,
-           AppointmentTimePicker.Time));
+            await Navigation.PushAsync(new PageHome());
         }
         else
         {

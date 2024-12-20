@@ -1,3 +1,4 @@
+using EVet.Includes;
 using System.Reflection;
 using System.Xml.Linq;
 
@@ -23,7 +24,9 @@ public partial class PageAdmin : ContentPage
 
     private async void AddLabResults(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new ViewAllPets());
+        await Navigation.PushAsync(new PageLabResults());
+        //string userId = GlobalVariables.IDD;
+        //await Navigation.PushAsync(new ViewAllUsers(userId));
 
     }
 

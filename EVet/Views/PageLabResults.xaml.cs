@@ -10,7 +10,8 @@ using Firebase.Database.Query;
 namespace EVet.Views;
 
 public partial class PageLabResults : ContentPage
-{
+{ LabResults labresults = new LabResults();
+    Users _Users = new Users();
     public PageLabResults()
     {
         InitializeComponent();
@@ -18,19 +19,16 @@ public partial class PageLabResults : ContentPage
 
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
-        var currentDate = DateTime.Now;
-        var currentTime = DateTime.Now.TimeOfDay;
-
         // Create a new LabResult object
-        var labResult = new LabResults()
+        var labResult = new LabResults() // Use the LabResult model instead of PageLabResults
         {
-            PetName = PetNameEntry.Text, // Get the pet name from the Entry
-            OwnerName = OwnerNameEntry.Text, // Get the owner name from the Entry
-            Date = currentDate, // Set the current date
-            Time = currentTime.ToString(@"hh\:mm"), // Format the time
-            TestName = TestNamePicker.SelectedItem?.ToString(), // Get the selected test name
-            Result = ResultEntry.Text, // Get the result from the Entry
-            Range = RangeEntry.Text // Get the range from the Entry
+            PetName = PetNameEntry.Text,
+            OwnerName = OwnerNameEntry.Text,
+            Date = DatePicker.Date,
+            Time = TimePicker.Time.ToString(),
+            TestName = TestNamePicker.SelectedItem?.ToString(),
+            Result = ResultEntry.Text,
+            Range = RangeEntry.Text // Capture the range input
         };
 
         // Validate input
@@ -44,24 +42,28 @@ public partial class PageLabResults : ContentPage
             return;
         }
 
-        // Call the AddLabResultAsync method to save the lab result
-        bool isSuccess = await labResult.AddLabResultAsync();
-
-        if (isSuccess)
+        // Send the data to Firebase
+        try
         {
+            await client
+                .Child("LabResults") // This is the node where data will be stored
+                .PostAsync(labResult);
+
             // Show a confirmation message
             await DisplayAlert("Success", "Lab results submitted successfully!", "OK");
-
+            await Navigation.PushAsync(new PageAdmin());
             // Clear the form fields
             PetNameEntry.Text = string.Empty;
             OwnerNameEntry.Text = string.Empty;
             ResultEntry.Text = string.Empty;
-            RangeEntry.Text = string.Empty;
+            RangeEntry.Text = string.Empty; // Clear the range field
             TestNamePicker.SelectedItem = null;
+            DatePicker.Date = DateTime.Now;
+            TimePicker.Time = TimeSpan.Zero;
         }
-        else
+        catch (Exception ex)
         {
-            await DisplayAlert("Error", "Failed to submit results. Please try again.", "OK");
+            await DisplayAlert("Error", $"Failed to submit results: {ex.Message}", "OK");
         }
     }
 

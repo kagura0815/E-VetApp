@@ -3,8 +3,7 @@
     x:Class="EVet.Views.PageLabResults"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="PageLabResults"
-    NavigationPage.HasNavigationBar="False">
+    Title="        PageLabResults">
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -14,7 +13,7 @@
 
         <ScrollView
             Grid.Row="1"
-            Margin="0,0,0,10"
+            Margin="0,-60,0,10"
             HorizontalOptions="FillAndExpand">
             <VerticalStackLayout Padding="10">
 
@@ -50,7 +49,17 @@
                         Placeholder="Enter owner name"
                         TextColor="Black" />
 
+                    <Label
+                        FontSize="18"
+                        Text="Date"
+                        TextColor="Black" />
+                    <DatePicker x:Name="DatePicker" TextColor="Black" />
 
+                    <Label
+                        FontSize="18"
+                        Text="Time"
+                        TextColor="Black" />
+                    <TimePicker x:Name="TimePicker" TextColor="Black" />
 
                     <Label
                         FontSize="18"

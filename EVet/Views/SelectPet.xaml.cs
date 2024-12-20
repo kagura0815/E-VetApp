@@ -1,3 +1,4 @@
+using EVet.Includes;
 using EVet.Models;
 using System.Collections.ObjectModel;
 using static EVet.Views.PetProfile;
@@ -36,8 +37,9 @@ public partial class SelectPet : ContentPage
     }
     private async Task FillList()
     {
-        var pets = await _petlist.GetPets();
-        PetsList.Clear(); // Clear existing items
+        string userId = GlobalVariables.IDD;
+        var pets = await _petlist.GetPets(userId);
+      
         foreach (var pet in pets)
         {
             PetsList.Add(pet); // Add each pet to the ObservableCollection

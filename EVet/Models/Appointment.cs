@@ -19,6 +19,7 @@ namespace EVet.Models
         public string Type { get; set; } // Dog or Cat
         public string Breed { get; set; } // Breed of the pet
         public string Service { get; set; } // Selected service
+        public string StatusLabel {  get; set; }
         public DateOnly AppointmentDate { get; set; }
 
         public TimeSpan AppointmentTime { get; set; }
@@ -26,7 +27,7 @@ namespace EVet.Models
 
 
         // Method to add an appointment
-        public async Task<bool> AddAppointments(string bid, string petName, string ownerName, string type, string petBreed, string service, DateOnly appointmentDate, TimeSpan appointmentTime)
+        public async Task<bool> AddAppointments(string bid, string petName,string status, string ownerName, string type, string petBreed, string service, DateOnly appointmentDate, TimeSpan appointmentTime)
         {
             // Simulate adding an appointment (e.g., saving to a database)
             try
@@ -39,6 +40,7 @@ namespace EVet.Models
                     Type = type,
                     Breed = petBreed,
                     Service = service,
+                    StatusLabel = status,
                     AppointmentDate = appointmentDate,
                     AppointmentTime = appointmentTime
 
@@ -55,6 +57,25 @@ namespace EVet.Models
                 return false;
             }
         }
+        public async Task<bool> EditAppointments(string petName,string status, string ownerName, string type, string petBreed, string service)
+        {
+
+            var appointment = new Appointment()
+
+            {
+
+                PetName = petName,
+                OwnerName = ownerName,
+                Type = type,
+                Breed = petBreed,
+                Service = service,
+                StatusLabel = status
+            };
+            await client.Child($"Appointment/{apptkey}").PatchAsync(appointment);
+            ;
+            return true;
+        }
+
         public async Task<List<Appointment>> GetAppointments()
         {
 

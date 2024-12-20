@@ -8,8 +8,9 @@ using Firebase.Database.Query;
 using static EVet.Includes.GlobalVariables;
 namespace EVet.Models
 {
-    class Users
+   public class Users
     {
+        public List<Users> UserList { get; set; } = new List<Users>();
         public string FirstName { get; set; }   
         public string LastName { get; set; }
         public string ContactNumber { get; set; }
@@ -55,6 +56,23 @@ namespace EVet.Models
             {
                 return false;
             }
+        }
+        public async Task<List<Users>> GetUser()
+        {
+
+            return (await client
+                .Child($"Users")
+                .OnceAsync<Users>()).Select(item => new Users
+                {
+                   FirstName = item.Object.FirstName,
+                   LastName = item.Object.LastName,
+                   ContactNumber = item.Object.ContactNumber,
+                   Address = item.Object.Address,
+                   
+
+
+
+                }).ToList();
         }
         public async Task<bool> GetUsername(string user)
         {

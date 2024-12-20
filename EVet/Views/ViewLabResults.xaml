@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="EVet.Views.PageAdminViewAppointment"
+    x:Class="EVet.Views.ViewLabResults"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="PageAdminViewAppointment">
+    Title="ViewLabResults">
     <VerticalStackLayout>
         <Border
             Margin="0,20"
@@ -64,28 +64,7 @@
                                             </StackLayout>
                                         </StackLayout>
                                     </SwipeItemView>
-                                    <SwipeItemView
-                                        x:Name="itemdeletestudent"
-                                        Margin="5"
-                                        Invoked="itemdeletestudent_OnInvoked">
-                                        <StackLayout Margin="5">
-                                            <StackLayout
-                                                HorizontalOptions="CenterAndExpand"
-                                                Orientation="Vertical"
-                                                VerticalOptions="CenterAndExpand">
-                                                <Image
-                                                    Aspect="AspectFit"
-                                                    HeightRequest="20"
-                                                    Source="delete.png"
-                                                    WidthRequest="20" />
-                                                <Label
-                                                    FontSize="Micro"
-                                                    HorizontalOptions="CenterAndExpand"
-                                                    Text="Delete"
-                                                    VerticalOptions="CenterAndExpand" />
-                                            </StackLayout>
-                                        </StackLayout>
-                                    </SwipeItemView>
+
                                 </SwipeItems>
                             </SwipeView.RightItems>
 
@@ -154,7 +133,7 @@
                                                     Grid.Column="0"
                                                     FontSize="15"
                                                     HorizontalOptions="Start"
-                                                    Text="Pet Type:"
+                                                    Text="Date:"
                                                     TextColor="black"
                                                     VerticalOptions="CenterAndExpand" />
                                                 <Label
@@ -163,58 +142,10 @@
                                                     FontAttributes="Bold"
                                                     FontSize="15"
                                                     LineBreakMode="TailTruncation"
-                                                    Text="{Binding Type}"
+                                                    Text="{Binding Date}"
                                                     TextColor="black" />
                                                 <Label
                                                     Grid.Row="3"
-                                                    Grid.Column="0"
-                                                    FontSize="15"
-                                                    HorizontalOptions="Start"
-                                                    Text="Pet Breed:"
-                                                    TextColor="black"
-                                                    VerticalOptions="CenterAndExpand" />
-                                                <Label
-                                                    Grid.Row="3"
-                                                    Grid.Column="1"
-                                                    FontAttributes="Bold"
-                                                    FontSize="15"
-                                                    LineBreakMode="TailTruncation"
-                                                    Text="{Binding Breed}"
-                                                    TextColor="black" />
-                                                <Label
-                                                    Grid.Row="4"
-                                                    Grid.Column="0"
-                                                    FontSize="15"
-                                                    HorizontalOptions="Start"
-                                                    Text="Service:"
-                                                    TextColor="black"
-                                                    VerticalOptions="CenterAndExpand" />
-                                                <Label
-                                                    Grid.Row="4"
-                                                    Grid.Column="1"
-                                                    FontAttributes="Bold"
-                                                    FontSize="15"
-                                                    LineBreakMode="TailTruncation"
-                                                    Text="{Binding Service}"
-                                                    TextColor="black" />
-                                                <Label
-                                                    Grid.Row="5"
-                                                    Grid.Column="0"
-                                                    FontSize="15"
-                                                    HorizontalOptions="Start"
-                                                    Text="Date Appointment:"
-                                                    TextColor="black"
-                                                    VerticalOptions="CenterAndExpand" />
-                                                <Label
-                                                    Grid.Row="5"
-                                                    Grid.Column="1"
-                                                    FontAttributes="Bold"
-                                                    FontSize="15"
-                                                    LineBreakMode="TailTruncation"
-                                                    Text="{Binding AppointmentDate}"
-                                                    TextColor="black" />
-                                                <Label
-                                                    Grid.Row="6"
                                                     Grid.Column="0"
                                                     FontSize="15"
                                                     HorizontalOptions="Start"
@@ -222,30 +153,62 @@
                                                     TextColor="black"
                                                     VerticalOptions="CenterAndExpand" />
                                                 <Label
+                                                    Grid.Row="3"
+                                                    Grid.Column="1"
+                                                    FontAttributes="Bold"
+                                                    FontSize="15"
+                                                    LineBreakMode="TailTruncation"
+                                                    Text="{Binding Time}"
+                                                    TextColor="black" />
+                                                <Label
+                                                    Grid.Row="4"
+                                                    Grid.Column="0"
+                                                    FontSize="15"
+                                                    HorizontalOptions="Start"
+                                                    Text="Test Type:"
+                                                    TextColor="black"
+                                                    VerticalOptions="CenterAndExpand" />
+                                                <Label
+                                                    Grid.Row="4"
+                                                    Grid.Column="1"
+                                                    FontAttributes="Bold"
+                                                    FontSize="15"
+                                                    LineBreakMode="TailTruncation"
+                                                    Text="{Binding TestName}"
+                                                    TextColor="black" />
+                                                <Label
+                                                    Grid.Row="5"
+                                                    Grid.Column="0"
+                                                    FontSize="15"
+                                                    HorizontalOptions="Start"
+                                                    Text="Result:"
+                                                    TextColor="black"
+                                                    VerticalOptions="CenterAndExpand" />
+                                                <Label
+                                                    Grid.Row="5"
+                                                    Grid.Column="1"
+                                                    FontAttributes="Bold"
+                                                    FontSize="15"
+                                                    LineBreakMode="TailTruncation"
+                                                    Text="{Binding Result}"
+                                                    TextColor="black" />
+                                                <Label
+                                                    Grid.Row="6"
+                                                    Grid.Column="0"
+                                                    FontSize="15"
+                                                    HorizontalOptions="Start"
+                                                    Text="Range:"
+                                                    TextColor="black"
+                                                    VerticalOptions="CenterAndExpand" />
+                                                <Label
                                                     Grid.Row="6"
                                                     Grid.Column="1"
                                                     FontAttributes="Bold"
                                                     FontSize="15"
                                                     LineBreakMode="TailTruncation"
-                                                    Text="{Binding AppointmentTime}"
+                                                    Text="{Binding Range}"
                                                     TextColor="black" />
 
-                                                <Label
-                                                    Grid.Row="7"
-                                                    Grid.Column="0"
-                                                    FontSize="15"
-                                                    HorizontalOptions="Start"
-                                                    Text="Status:"
-                                                    TextColor="black"
-                                                    VerticalOptions="CenterAndExpand" />
-                                                <Label
-                                                    Grid.Row="7"
-                                                    Grid.Column="1"
-                                                    FontAttributes="Bold"
-                                                    FontSize="15"
-                                                    LineBreakMode="TailTruncation"
-                                                    Text="{Binding StatusLabel}"
-                                                    TextColor="black" />
 
 
                                             </Grid>
